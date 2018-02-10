@@ -11,11 +11,9 @@ endfunction
 
 " Returns the last word of the previous line
 function GetPrevText()
-    let save_pos = getpos(".")
     execute "normal! k$Bve"
     let selectedtext = GetSelectedText()
-    visual! "<esc>"
-    call setpos('.', save_pos)
+    visual! "<esc>j$"
     return selectedtext
 endfunction
 
