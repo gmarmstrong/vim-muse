@@ -2,14 +2,6 @@
 " See `:help complete()`
 " See `:help getchar()`
 
-"" Returns the visual selection
-"function GetSelectedText()
-"    normal gv"xy
-"    let result = getreg("x")
-"    normal gv
-"    return result
-"endfunction
-
 " Returns the visual selection
 function GetSelectedText()
     normal "xy
@@ -42,9 +34,9 @@ function RhymeBot()
     endfor
 
     " Receive user input/choice
-    let @x = " " . rhymes[nr2char(getchar())]
+    let @q = " " . rhymes[nr2char(getchar())]
 
-    normal! \"xp
+    normal! "qp
     startinsert!
 
 endfunction
