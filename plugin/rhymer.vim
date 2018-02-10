@@ -42,13 +42,15 @@ function RhymeBot()
     endfor
 
     " Receive user input/choice
-    let choice = nr2char(getchar())
+    let @x = " " . rhymes[nr2char(getchar())]
 
-    " Echo back user's choice
-    " TODO Insert choice instead
-    echo rhymes[choice]
+    normal! p
+    startinsert!
 
 endfunction
 
 " Map RhymeBot to <leader>r (usually \r)
 noremap <leader>r :call RhymeBot()<CR>
+
+" Use RhymeBot in insert mode
+inoremap <leader>r <C-o>:call RhymeBot()<CR>
