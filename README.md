@@ -14,6 +14,6 @@ Use `:PlugUpdate` to update to the latest release.
 
 ## Usage
 
-1. Highlight a word
+1. Put the cursor below the line with which you want to rhyme
 2. Hit `<leader>r` (usually `\r`)
 3. Select a word
