@@ -17,7 +17,7 @@ def rhyme(word):
     response = requests.get(url + word)
     rhymes = json.loads(response.text)
     rhyme_list = []
-    for rhyme in rhymes[0:8]:
+    for rhyme in rhymes[0:10]:
         rhyme_list.append(rhyme["word"])
     return " ".join(rhyme_list)
 
@@ -27,6 +27,6 @@ def synonym(word):
     response = requests.get(url + word)
     synonyms = json.loads(response.text);
     synonym_list = []
-    for synonym in synonyms[0:8]:
+    for synonym in synonyms[0:10]:
         synonym_list.append(synonym["word"])
         return " ".join(synonym_list)
