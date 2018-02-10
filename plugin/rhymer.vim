@@ -34,6 +34,7 @@ function RhymeBot()
 endfunction
 
 if !filereadable("$HOME/.local/lib/datamuse.py")
+    system("mkdir -p $HOME/.local/lib")
     system("wget https://raw.githubusercontent.com/gmarmstrong/rhymer/master/lib/datamuse.py")
 endif
 
