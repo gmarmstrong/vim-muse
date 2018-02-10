@@ -32,7 +32,7 @@ function RhymeBot()
     endfor
 
     " Receive user input/choice
-    let @q = " " . rhymes[nr2char(getchar())]
+    let @q = rhymes[nr2char(getchar())]
 
     " Insert choice
     normal! "qp
