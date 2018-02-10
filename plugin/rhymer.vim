@@ -14,7 +14,7 @@ function RhymeBot()
 
     " Get rhymes for the visual selection
     let $RHYMING_WORD = GetSelectedText()   "Store rhyming word in an environment variable
-    let rhymes = split(system(pyfile "$HOME/.local/lib/datamuse.py"))    "Get a list of rhymes
+    let rhymes = split(pyfile "$HOME/.local/lib/datamuse.py")    "Get a list of rhymes
 
     " Print list of rhymes
     echo 'Rhymes:'
@@ -34,8 +34,8 @@ function RhymeBot()
 endfunction
 
 if !filereadable("$HOME/.local/lib/datamuse.py")
-    system("mkdir -p $HOME/.local/lib")
-    system("wget https://raw.githubusercontent.com/gmarmstrong/rhymer/master/lib/datamuse.py")
+    execute "!mkdir -p $HOME/.local/lib"
+    execute "!wget https://raw.githubusercontent.com/gmarmstrong/rhymer/master/lib/datamuse.py"
 endif
 
 " Map RhymeBot to <leader>r (usually \r)
