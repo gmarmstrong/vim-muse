@@ -44,7 +44,7 @@ function RhymeBot()
     " Receive user input/choice
     let @x = " " . rhymes[nr2char(getchar())]
 
-    normal! p
+    normal! "xp
     startinsert!
 
 endfunction
