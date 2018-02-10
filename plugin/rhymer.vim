@@ -35,7 +35,7 @@ endfunction
 
 if !filereadable("$HOME/.local/lib/datamuse.py")
     execute "!mkdir -p $HOME/.local/lib"
-    execute "!wget https://raw.githubusercontent.com/gmarmstrong/rhymer/master/lib/datamuse.py"
+    execute "!cp ../lib/datamuse.py $HOME/.local/lib/datamuse.py"
 endif
 
 " Map RhymeBot to <leader>r (usually \r)
