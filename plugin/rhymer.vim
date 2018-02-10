@@ -32,7 +32,6 @@ function RhymeBot()
     " Get rhymes for the visual selection
     let rhyming_word = GetPrevText()
     let rhymes = split(system("python3 $HOME/.local/lib/dm_interface.py " . rhyming_word))
-    echo rhymes
 
     " Print list of rhymes
     echo 'Rhymes with ' . rhyming_word . ':'
