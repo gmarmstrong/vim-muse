@@ -16,3 +16,4 @@ Use `:PlugUpdate` to update to the latest release.
 
 1. Highlight a word
 2. Hit `<leader>r` (usually `\r`)
+3. Select a word
