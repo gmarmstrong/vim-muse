@@ -20,3 +20,13 @@ def rhyme(word):
     for rhyme in rhymes[0:8]:
         rhyme_list.append(rhyme["word"])
     return " ".join(rhyme_list)
+
+
+def synonym(word):
+    url="https://api.datamuse.com/words?ml="
+    response = requests.get(url + word)
+    synonyms = json.loads(response.text);
+    synonym_list = []
+    for synonym in synonyms[0:8]:
+        synonym_list.append(synonym["word"])
+        return " ".join(synonym_list)
