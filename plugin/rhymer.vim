@@ -21,10 +21,10 @@ endfunction
 function GetPrevText()
     let save_pos = getpos(".")
     execute "normal! k$Bve"
-    let myvar = GetSelectedText()
+    let selectedtext = GetSelectedText()
     visual! "<esc>"
     call setpos('.', save_pos)
-    return myvar
+    return selectedtext
 endfunction
 
 function RhymeBot()
