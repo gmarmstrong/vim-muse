@@ -14,6 +14,6 @@ def rhyme(word):
     response = requests.get(url + word)
     rhymes = json.loads(response.text)
     rhyme_list = []
-    for rhyme in rhymes:
+    for rhyme in rhymes[0:8]:
         rhyme_list.append(rhyme["word"])
-    return rhyme_list
+    return " ".join(rhyme_list)
