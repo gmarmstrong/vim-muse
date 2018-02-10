@@ -6,9 +6,11 @@
 # This is a Python library that acts as a wrapper for the DataMuse API's rhyme
 # function.
 
-import os
+# TODO Add docstrings
+
 import json
 import requests
+
 
 def rhyme(word):
     url = "https://api.datamuse.com/words?rel_rhy="
@@ -18,7 +20,3 @@ def rhyme(word):
     for rhyme in rhymes[0:8]:
         rhyme_list.append(rhyme["word"])
     return " ".join(rhyme_list)
-
-rhyming_word = os.environ['RHYMING_WORD']
-rhymes = rhyme(rhyming_word)
-print(rhymes)

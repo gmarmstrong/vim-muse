@@ -2,22 +2,40 @@
 " See `:help complete()`
 " See `:help getchar()`
 
+"" Returns the visual selection
+"function GetSelectedText()
+"    normal gv"xy
+"    let result = getreg("x")
+"    normal gv
+"    return result
+"endfunction
+
 " Returns the visual selection
 function GetSelectedText()
-    normal gv"xy
+    normal "xy
     let result = getreg("x")
-    normal gv
     return result
+endfunction
+
+" Returns the last word of the previous line
+function GetPrevText()
+    let save_pos = getpos(".")
+    execute "normal! k$Bve"
+    let myvar = GetSelectedText()
+    visual! "<esc>"
+    call setpos('.', save_pos)
+    return myvar
 endfunction
 
 function RhymeBot()
 
     " Get rhymes for the visual selection
-    let $RHYMING_WORD = GetSelectedText()   "Store rhyming word in an environment variable
-    let rhymes = split(system("python3 $HOME/.local/lib/datamuse.py"))    "Get a list of rhymes
+    let rhyming_word = GetPrevText()
+    let rhymes = split(system("python3 $HOME/.local/lib/dm_interface.py " . rhyming_word))
+    echo rhymes
 
     " Print list of rhymes
-    echo 'Rhymes:'
+    echo 'Rhymes with ' . rhyming_word . ':'
     let i = 0
     for rhyme in rhymes
         echom i . '.' rhyme
