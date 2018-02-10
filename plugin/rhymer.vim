@@ -11,9 +11,9 @@ endfunction
 
 " Returns the last word of the previous line
 function GetPrevText()
-    execute "normal! k$Bve"
+    normal! k$Bve
     let selectedtext = GetSelectedText()
-    visual! "<esc>j$"
+    normal! j$
     return selectedtext
 endfunction
 
