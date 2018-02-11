@@ -25,7 +25,7 @@ CONTENTS                                            *RhymerContents*
     9. Credits .............. |RhymerCredits|
 
 ====================================================================
-Section 1: Introduction                                *RhymerUsage*
+Section 1: Introduction                         *RhymerIntroduction*
 
 ====================================================================
 Section 2: Usage                                       *RhymerUsage*
