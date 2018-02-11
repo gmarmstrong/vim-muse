@@ -87,9 +87,6 @@ function! rhymer#SyllableCount()
     echo 'Syllables: ' . s:syllable_count
 endfunction
 
-" Install nltk and cmudict if not already installed
-call rhymer#InstallNLTK()
-
 " Map SynonymBot to <leader>m (usually \m)
 noremap <leader>m :call rhymer#SynonymBot()<CR>
 

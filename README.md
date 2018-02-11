@@ -14,7 +14,10 @@ written for [UGAHacks](http://ugahacks.com/) 2018.
 3. Restart Vim
 4. Enter `:PlugInstall`
 
-Use `:PlugUpdate` to update to the latest release. Run `./setup.sh` for syllable support.
+### Further installation
+
+* Use `:call rhymer#InstallNLTK()` to add syllable support
+* Use `:PlugUpdate` to update to the latest release
 
 ## Usage
 
