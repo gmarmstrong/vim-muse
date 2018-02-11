@@ -51,7 +51,7 @@ function! rhymer#SynonymBot()
     echo 'Synonyms of ' . s:synonym_word . ':'
     let s:count = 0
     for s:synonym in s:synonyms
-        echom s:count . '.' s:synonyms
+        echom s:count . '.' s:synonym
         let s:count += 1
     endfor
 
