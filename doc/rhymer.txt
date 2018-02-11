@@ -7,9 +7,9 @@
              |_|  |_| |_|\__, |_| |_| |_|\___|_|    ~
                          |___/                      ~
 
-                 rhyming assistant
-                 for the poetic Vimmers
-                 but not for haikus
+                 Rhyming assistant,
+                 for the poetic Vimmers,
+                 but not for haikus.
 
 ====================================================================
 CONTENTS                                            *RhymerContents*
