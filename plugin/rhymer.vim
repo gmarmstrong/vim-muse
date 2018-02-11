@@ -1,5 +1,11 @@
 " Vim global plugin for suggesting rhymes
 
+function! rhymer#Install()
+    silent execute "!mkdir -p \"$HOME/.local/lib\""
+    silent execute "!cp \"lib/datamuse.py\" \"$HOME/.local/lib/datamuse.py\""
+    silent execute "!cp \"lib/dm_interface.py\" \"$HOME/.local/lib/dm_interface.py\""
+endfunction
+
 " Returns the visual selection
 function! rhymer#GetSelectedText()
     normal "xy
@@ -40,6 +46,11 @@ function! rhymer#RhymeBot()
     startinsert!
 
 endfunction
+
+if empty("$HOME/.local/lib/datamuse.py") || empty("$HOME/.local/lib/dm_interface.py")
+    echo "rhymer: DataMuse libraries not found. Installing..."
+    call rhymer#Install()
+endif
 
 " Map RhymeBot to <leader>r (usually \r)
 noremap <leader>r :call rhymer#RhymeBot()<CR>
