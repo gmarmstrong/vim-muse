@@ -62,7 +62,7 @@ function! rhymer#SynonymBot()
 
     " Receive user input/choice
     let @q = s:synonyms[nr2char(getchar())]
-    normal diw"qP
+    normal diW"qp
 
 endfunction
 
