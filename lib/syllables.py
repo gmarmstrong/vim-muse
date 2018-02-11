@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 
-import string
+import re
 from nltk.corpus import cmudict
 
 dictionary = cmudict.dict()
@@ -13,14 +13,15 @@ def nsyl_word(word):
 
 # Count syllables in a sentence
 def nsyl_sentence(sentence):
+
+    # Strip punctuation
+    sentence = re.sub(r"([^\s'\w]|_)+", "", sentence)
+
+    # Error on typos
     for word in sentence.split():
         if word.lower() not in dictionary:
             print("Typo in word: " + word + ". Aborting.")
             quit()
-
-    # Strip punctuation
-    sentence = "".join((char for char in sentence if
-        char not in string.punctuation))
 
     # Count syllables
     count = 0
