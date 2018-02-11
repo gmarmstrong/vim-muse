@@ -1,7 +1,5 @@
 " Vim global plugin for suggesting rhymes
 
-" TODO Utilize lib/syl_interface.py (for 'line numbers')
-
 " Returns the visual selection
 function! rhymer#GetSelectedText()
     normal "xy
@@ -43,8 +41,19 @@ function! rhymer#RhymeBot()
 
 endfunction
 
+function! rhymer#SyllableCount()
+    echo 'Counting syllables...'
+    normal "syy
+    let s:current_line = getreg("s")
+    let s:syllable_count = system("python3 $VIMDOTDIR/plugged/rhymer/lib/syl_interface.py \"" . s:current_line . "\"")
+    echo 'Syllables: ' . s:syllable_count
+endfunction
+
 " Map RhymeBot to <leader>r (usually \r)
 noremap <leader>r :call rhymer#RhymeBot()<CR>
 
 " Use RhymeBot in insert mode
 inoremap <leader>r <C-o>:call rhymer#RhymeBot()<CR>
+
+" Map SyllableCount to <leader>s (usually \s)
+noremap <leader>s :call rhymer#SyllableCount()<CR>
