@@ -5,7 +5,7 @@ written for [UGAHacks](http://ugahacks.com/) 2018.
 
 ## Example
 
-[![asciicast](https://asciinema.org/a/Yp0GhGvtQBFKiASeBxUtYsYqe.png)](https://asciinema.org/a/Yp0GhGvtQBFKiASeBxUtYsYqe)
+![Demo recording of rhymer](https://i.imgur.com/5ORa10L.gif)
 
 ## Installation
 
