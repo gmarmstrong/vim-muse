@@ -1,9 +1,10 @@
 " Vim global plugin for suggesting rhymes
 
+" Install datamuse libraries
 function! rhymer#Install()
-    silent execute "!mkdir -p \"$HOME/.local/lib\""
-    silent execute "!cp \"lib/datamuse.py\" \"$HOME/.local/lib/datamuse.py\""
-    silent execute "!cp \"lib/dm_interface.py\" \"$HOME/.local/lib/dm_interface.py\""
+    silent execute "!mkdir -p $HOME/.local/lib"
+    silent execute "!cp $VIMDOTDIR/plugged/rhymer/lib/datamuse.py $HOME/.local/lib/datamuse.py"
+    silent execute "!cp $VIMDOTDIR/plugged/rhymer/lib/dm_interface.py $HOME/.local/lib/dm_interface.py"
 endfunction
 
 " Returns the visual selection
