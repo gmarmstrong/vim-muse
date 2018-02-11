@@ -10,6 +10,7 @@ syntax on
 inoremap jk <esc>
 setlocal nonumber
 set backspace=indent,eol,start
+set laststatus=1
 
 " Plugins (note the single quotes)
 call plug#begin('$XDG_DATA_HOME/vimdemo/plugged')
