@@ -62,7 +62,8 @@ function! rhymer#SynonymBot()
 
     " Receive user input/choice
     let @q = s:synonyms[nr2char(getchar())]
-    normal diW"qp
+    echo "Synonym placed in buffer: q"
+    "normal diW"qp
 
 endfunction
 
