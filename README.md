@@ -18,6 +18,13 @@ Use `:PlugUpdate` to update to the latest release.
 
 ## Usage
 
+### Rhyming (in AA/BB)
+
 1. Put the cursor below the line with which you want to rhyme
 2. Hit `<leader>r` (usually `\r`)
 3. Select a word
+
+### Syllable counting
+
+1. Put the cursor on the line of which to count the syllables
+2. Hit `<leader>s` (usually `\s`)
