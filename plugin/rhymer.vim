@@ -1,38 +1,39 @@
-" See `:help complete-funcitons`
-" See `:help complete()`
-" See `:help getchar()`
+" Vim global plugin for suggesting rhymes
 
 " Returns the visual selection
-function GetSelectedText()
+function! rhymer#GetSelectedText()
     normal "xy
-    let result = getreg("x")
-    return result
+    let s:result = getreg("x")
+    return s:result
 endfunction
 
 " Returns the last word of the previous line
-function GetPrevText()
+function! rhymer#GetPrevText()
     normal! k$Bve
-    let selectedtext = GetSelectedText()
+    let s:selectedtext = rhymer#GetSelectedText()
     normal! j$
-    return selectedtext
+    return s:selectedtext
 endfunction
 
-function RhymeBot()
+function! rhymer#RhymeBot()
 
     " Get rhymes for the visual selection
-    let rhyming_word = GetPrevText()
-    let rhymes = split(system("python3 $HOME/.local/lib/dm_interface.py " . rhyming_word))
+    let s:rhyming_word = rhymer#GetPrevText()
+    let s:rhymes = split(system("python3 $HOME/.local/lib/dm_interface.py " . s:rhyming_word))
 
     " Print list of rhymes
     echo 'Rhymes with ' . rhyming_word . ':'
-    let i = 0
-    for rhyme in rhymes
-        echom i . '.' rhyme
-        let i += 1
+    let s:count = 0
+    for s:rhyme in s:rhymes
+        echom s:count . '.' s:rhyme
+        let s:count += 1
     endfor
 
     " Receive user input/choice
-    let @q = rhymes[nr2char(getchar())]
+    " See `:help complete-funcitons`
+    " See `:help complete()`
+    " See `:help getchar()`
+    let @q = s:rhymes[nr2char(getchar())]
 
     " Insert choice
     normal! "qp
@@ -41,7 +42,7 @@ function RhymeBot()
 endfunction
 
 " Map RhymeBot to <leader>r (usually \r)
-noremap <leader>r :call RhymeBot()<CR>
+noremap <leader>r :call rhymer#RhymeBot()<CR>
 
 " Use RhymeBot in insert mode
-inoremap <leader>r <C-o>:call RhymeBot()<CR>
+inoremap <leader>r <C-o>:call rhymer#RhymeBot()<CR>
