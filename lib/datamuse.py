@@ -1,9 +1,9 @@
 #!/usr/bin/env python3
 
-# DataMuse API documentation: https://www.datamuse.com/api/
-# DataMuse API root: https://api.datamuse.com/
+# Datamuse API documentation: https://www.datamuse.com/api/
+# Datamuse API root: https://api.datamuse.com/
 
-# This is a Python library that acts as a wrapper for the DataMuse API's rhyme
+# This is a Python library that acts as a wrapper for the Datamuse API's rhyme
 # function.
 
 # TODO Add docstrings
