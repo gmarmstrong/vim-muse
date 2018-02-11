@@ -1,12 +1,5 @@
 " Vim global plugin for suggesting rhymes
 
-" Install datamuse libraries
-function! rhymer#Install()
-    silent execute "!mkdir -p $HOME/.local/lib"
-    silent execute "!cp $VIMDOTDIR/plugged/rhymer/lib/datamuse.py $HOME/.local/lib/datamuse.py"
-    silent execute "!cp $VIMDOTDIR/plugged/rhymer/lib/dm_interface.py $HOME/.local/lib/dm_interface.py"
-endfunction
-
 " Returns the visual selection
 function! rhymer#GetSelectedText()
     normal "xy
@@ -26,10 +19,10 @@ function! rhymer#RhymeBot()
 
     " Get rhymes for the visual selection
     let s:rhyming_word = rhymer#GetPrevText()
-    let s:rhymes = split(system("python3 $HOME/.local/lib/dm_interface.py " . s:rhyming_word))
+    let s:rhymes = split(system("python3 $VIMDOTDIR/plugged/rhymer/lib/dm_interface.py " . s:rhyming_word))
 
     " Print list of rhymes
-    echo 'Rhymes with ' . rhyming_word . ':'
+    echo 'Rhymes with ' . s:rhyming_word . ':'
     let s:count = 0
     for s:rhyme in s:rhymes
         echom s:count . '.' s:rhyme
@@ -47,11 +40,6 @@ function! rhymer#RhymeBot()
     startinsert!
 
 endfunction
-
-if empty("$HOME/.local/lib/datamuse.py") || empty("$HOME/.local/lib/dm_interface.py")
-    echo "rhymer: DataMuse libraries not found. Installing..."
-    call rhymer#Install()
-endif
 
 " Map RhymeBot to <leader>r (usually \r)
 noremap <leader>r :call rhymer#RhymeBot()<CR>
