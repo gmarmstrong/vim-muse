@@ -29,4 +29,4 @@ def synonym(word):
     synonym_list = []
     for synonym in synonyms[0:10]:
         synonym_list.append(synonym["word"])
-        return " ".join(synonym_list)
+    return " ".join(synonym_list)

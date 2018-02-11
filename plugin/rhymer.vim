@@ -17,9 +17,9 @@ endfunction
 
 function! rhymer#RhymeBot()
 
-    " Get rhymes for the visual selection
+    " Get rhymes for the previous text 
     let s:rhyming_word = rhymer#GetPrevText()
-    let s:rhymes = split(system("python3 $VIMDOTDIR/plugged/rhymer/lib/dm_interface.py " . s:rhyming_word))
+    let s:rhymes = split(system("python3 $VIMDOTDIR/plugged/rhymer/lib/dm_rhyme_interface.py " . s:rhyming_word))
 
     " Print list of rhymes
     echo 'Rhymes with ' . s:rhyming_word . ':'
@@ -41,6 +41,26 @@ function! rhymer#RhymeBot()
 
 endfunction
 
+function! rhymer#SynonymBot()
+
+    " Get synonyms for the visual selection
+    let s:synonym_word = rhymer#GetSelectedText()
+    let s:synonyms = split(system("python3 $VIMDOTDIR/plugged/rhymer/lib/dm_synonym_interface.py " . s:synonym_word))
+
+    " Print list of synonyms
+    echo 'Synonyms of ' . s:synonym_word . ':'
+    let s:count = 0
+    for s:synonym in s:synonyms
+        echom s:count . '.' s:synonyms
+        let s:count += 1
+    endfor
+
+    " Receive user input/choice
+    let @q = s:synonyms[nr2char(getchar())]
+    echo "Copied synonym to put register: q"
+
+endfunction
+
 function! rhymer#SyllableCount()
     echo 'Counting syllables...'
     normal "syy
@@ -48,6 +68,9 @@ function! rhymer#SyllableCount()
     let s:syllable_count = system("python3 $VIMDOTDIR/plugged/rhymer/lib/syl_interface.py \"" . s:current_line . "\"")
     echo 'Syllables: ' . s:syllable_count
 endfunction
+
+" Map SynonymBot to <leader>m (usually \m)
+noremap <leader>m :call rhymer#SynonymBot()<CR>
 
 " Map RhymeBot to <leader>r (usually \r)
 noremap <leader>r :call rhymer#RhymeBot()<CR>
