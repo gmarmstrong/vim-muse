@@ -3,6 +3,10 @@
 The `rhymer` plugin is a rhyming assistant for the Vim text editor. It was
 written for [UGAHacks](http://ugahacks.com/) 2018.
 
+## Example
+
+[![asciicast](https://asciinema.org/a/Yp0GhGvtQBFKiASeBxUtYsYqe.png)](https://asciinema.org/a/Yp0GhGvtQBFKiASeBxUtYsYqe)
+
 ## Installation
 
 1. Install [`vim-plug`](https://github.com/junegunn/vim-plug)
