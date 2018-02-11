@@ -1,11 +1,11 @@
 #!/usr/bin/env python3
 
-# Interfaces with datamuse.py
+# Interfaces with syllables.py
 
 import argparse
-import datamuse
+import syllables
 
 parser = argparse.ArgumentParser()
 parser.add_argument("words")
 args = parser.parse_args()
-print(datamuse.rhyme(args.words))
+print(syllables.nsyl_sentence(args.words))

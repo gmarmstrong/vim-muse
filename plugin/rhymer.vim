@@ -1,5 +1,7 @@
 " Vim global plugin for suggesting rhymes
 
+" TODO Utilize lib/syl_interface.py (for 'line numbers')
+
 " Returns the visual selection
 function! rhymer#GetSelectedText()
     normal "xy
