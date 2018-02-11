@@ -7,6 +7,11 @@ function! rhymer#GetSelectedText()
     return s:result
 endfunction
 
+" Returns the current word
+function! rhymer#GetCurrentWord()
+    return expand("<cword>")
+endfunction
+
 " Returns the last word of the previous line
 function! rhymer#GetPrevText()
     normal! k$Bve
@@ -43,8 +48,8 @@ endfunction
 
 function! rhymer#SynonymBot()
 
-    " Get synonyms for the visual selection
-    let s:synonym_word = rhymer#GetSelectedText()
+    " Get synonyms for the current word
+    let s:synonym_word = rhymer#GetCurrentWord()
     let s:synonyms = split(system("python3 $VIMDOTDIR/plugged/rhymer/lib/dm_synonym_interface.py " . s:synonym_word))
 
     " Print list of synonyms
@@ -57,7 +62,7 @@ function! rhymer#SynonymBot()
 
     " Receive user input/choice
     let @q = s:synonyms[nr2char(getchar())]
-    echo "Copied synonym to put register: q"
+    normal diw"qP
 
 endfunction
 
