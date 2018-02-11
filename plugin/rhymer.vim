@@ -1,5 +1,17 @@
 " Vim global plugin for suggesting rhymes
 
+" Installs nltk and cmudict if not already installed
+function! rhymer#InstallNLTK()
+    silent execute "!python3 -c \"import nltk\""
+    if v:shell_error
+        execute "!pip3 install nltk"
+    endif
+    silent execute "!python3 -c \"from nltk.corpus import cmudict\""
+    if v:shell_error
+        execute "!python3 -c \"import nltk; nltk.download('cmudict')\""
+    endif
+endfunction
+
 " Returns the visual selection
 function! rhymer#GetSelectedText()
     normal "xy
@@ -22,7 +34,7 @@ endfunction
 
 function! rhymer#RhymeBot()
 
-    " Get rhymes for the previous text 
+    " Get rhymes for the previous text
     let s:rhyming_word = rhymer#GetPrevText()
     let s:rhymes = split(system("python3 $VIMDOTDIR/plugged/rhymer/lib/dm_rhyme_interface.py " . s:rhyming_word))
 
@@ -74,6 +86,9 @@ function! rhymer#SyllableCount()
     let s:syllable_count = system("python3 $VIMDOTDIR/plugged/rhymer/lib/syl_interface.py \"" . s:current_line . "\"")
     echo 'Syllables: ' . s:syllable_count
 endfunction
+
+" Install nltk and cmudict if not already installed
+call rhymer#InstallNLTK()
 
 " Map SynonymBot to <leader>m (usually \m)
 noremap <leader>m :call rhymer#SynonymBot()<CR>
