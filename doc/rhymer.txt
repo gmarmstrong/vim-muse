@@ -27,7 +27,7 @@ CONTENTS                                           *rhymer-contents*
 ====================================================================
 Section 1: Introduction                        *rhymer-introduction*
 
-|rhymer| provides functions for writing lyric poetry.
+|rhymer| provides features for writing lyric poetry.
 
 --------------------------------------------------------------------
 Feature overview
