@@ -5,7 +5,7 @@ written for [UGAHacks](http://ugahacks.com/) 2018.
 
 ## Example
 
-![Demo recording of rhymer](https://i.imgur.com/5ORa10L.gif)
+![Demo recording of rhymer](https://i.imgur.com/eAKCKSR.gif)
 
 ## Installation
 
