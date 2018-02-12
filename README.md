@@ -24,11 +24,17 @@ tested or documented here.
 
 ## Usage
 
-### Rhyming (in AA/BB)
+### Rhyming with the previous line (AA/BB)
 
 1. Put the cursor below the line with which you want to rhyme
 2. Hit `<leader>r` (usually `\r`)
-3. Select a word
+3. Select a rhyming word
+
+### Replace a word with a synonym
+
+1. Put the cursor over the word which you want to replace
+2. Hit `<leader>m` (usually `\m`)
+3. Select a synonym
 
 ### Syllable counting
 

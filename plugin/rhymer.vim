@@ -78,25 +78,21 @@ function! rhymer#SynonymBot()
     let @q = s:synonyms[nr2char(getchar())]
 
     " Replace word with synonym
-    echo "Synonym placed in buffer: q"
-    "" TODO Replace word with synonym
-    "normal diw
-    "echo getline('.')[col('.')-1]
-    "let prevchar = getline('.')[col('.')-1]
-    "let currchar = getline('.')[col('.')]
-    "echo prevchar
-    "echo currcar
-    "if currchar != " "
-    "    if prevchar == " "
-    "        normal "qP
-    "    endif
-    "else
-    "    if prevchar == " "
-    "        normal "qP
-    "    else
-    "        normal "qp
-    "    endif
-    "endif
+    normal diw
+    let prevchar = getline('.')[col('.')-1]
+    let currchar = getline('.')[col('.')]
+    let nextchar = getline('.')[col('.')+1]
+    if col('.')+1 == col('$') && col('.')+1 != 1    " If end of line
+        normal "qp
+    elseif currchar != " "                          " If middle of line
+        normal "qP
+    else
+        if prevchar == " "                          " If punctuation
+            normal "qP
+        else                                        " If beginning of line
+            normal "qp
+        endif
+    endif
 
 endfunction
 
