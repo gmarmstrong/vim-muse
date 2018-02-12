@@ -62,9 +62,9 @@ endfunction
 
 function! rhymer#SynonymBot()
 
-    " Get synonyms for the current word
+    " Get synonyms for the current word.
     let s:synonym_word = rhymer#GetCurrentWord()
-    let s:rhymes = split(system("python3 " . s:path . "/../lib/dm_synonym_interface.py " . s:synonym_word))
+    let s:synonyms = split(system("python3 " . s:path . "/../lib/dm_synonym_interface.py " . s:synonym_word))
 
     " Print list of synonyms
     echo 'Synonyms of ' . s:synonym_word . ':'
@@ -76,8 +76,27 @@ function! rhymer#SynonymBot()
 
     " Receive user input/choice
     let @q = s:synonyms[nr2char(getchar())]
+
+    " Replace word with synonym
     echo "Synonym placed in buffer: q"
-    "normal diW"qp
+    "" TODO Replace word with synonym
+    "normal diw
+    "echo getline('.')[col('.')-1]
+    "let prevchar = getline('.')[col('.')-1]
+    "let currchar = getline('.')[col('.')]
+    "echo prevchar
+    "echo currcar
+    "if currchar != " "
+    "    if prevchar == " "
+    "        normal "qP
+    "    endif
+    "else
+    "    if prevchar == " "
+    "        normal "qP
+    "    else
+    "        normal "qp
+    "    endif
+    "endif
 
 endfunction
 
