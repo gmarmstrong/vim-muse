@@ -9,47 +9,54 @@
 
                  Rhyming assistant,
                  for the poetic Vimmers,
-                 but not for haikus.
+                 maybe for haikus.
 
 ====================================================================
-CONTENTS                                            *RhymerContents*
+CONTENTS                                           *rhymer-contents*
 
-    1. Introduction ......... |RhymerIntroduction|
-    2. Usage ................ |RhymerUsage|
-    3. Mappings ............. |RhymerMappings|
-    4. Configuration ........ |RhymerConfiguration|
-    5. License .............. |RhymerLicense|
-    6. Bugs ................. |RhymerBugs|
-    7. Contributing ......... |RhymerContributing|
-    8. Changelog ............ |RhymerChangelog|
-    9. Credits .............. |RhymerCredits|
-
-====================================================================
-Section 1: Introduction                         *RhymerIntroduction*
+    1. Introduction ......... |rhymer-introduction|
+    2. Usage ................ |rhymer-usage|
+    3. Mappings ............. |rhymer-mappings|
+    4. Configuration ........ |rhymer-configuration|
+    5. License .............. |rhymer-license|
+    6. Bugs ................. |rhymer-bugs|
+    7. Contributing ......... |rhymer-contributing|
+    8. Changelog ............ |rhymer-changelog|
+    9. Credits .............. |rhymer-credits|
 
 ====================================================================
-Section 2: Usage                                       *RhymerUsage*
+Section 1: Introduction                        *rhymer-introduction*
+
+|rhymer| provides functions for writing lyric poetry.
+
+--------------------------------------------------------------------
+Feature overview
 
 ====================================================================
-Section 3: Mappings                                 *RhymerMappings*
+Section 2: Usage                                      *rhymer-usage*
 
 ====================================================================
-Section 4: Configuration                       *RhymerConfiguration*
+Section 3: Mappings                                *rhymer-mappings*
 
 ====================================================================
-Section 5: License                                   *RhymerLicense*
+Section 4: Configuration                      *rhymer-configuration*
 
 ====================================================================
-Section 6: Bugs                                         *RhymerBugs*
+Section 5: License                                  *rhymer-license*
 
 ====================================================================
-Section 7: Contributing                         *RhymerContributing*
+Section 6: Bugs                                        *rhymer-bugs*
 
 ====================================================================
-Section 8: Changelog                               *RhymerChangelog*
+Section 7: Contributing                        *rhymer-contributing*
 
 ====================================================================
-Section 9: Credits                                   *RhymerCredits*
+Section 8: Changelog                              *rhymer-changelog*
 
+====================================================================
+Section 9: Credits                                  *rhymer-credits*
+
+|rhymer| is developed and maintained by Guthrie McAfee Armstrong with help
+from Steven Tammen and Matthew Jones.
 
 vim:textwidth=68:tabstop=4:filetype=help:norightleft:
