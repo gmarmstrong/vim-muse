@@ -1,6 +1,6 @@
 # How to contribute to `rhymer`
 
-Use the `devel` branch until the code is ready for release. This keeps the
+Use the feature branches and the `devel` branch until the code is ready for release. This keeps the
 `master` branch stable for users.
 
 In this context, "[issues](https://github.com/gmarmstrong/rhymer/issues)" also
