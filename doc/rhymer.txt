@@ -27,10 +27,8 @@ CONTENTS                                           *rhymer-contents*
 ====================================================================
 Section 1: Introduction                        *rhymer-introduction*
 
-|rhymer| provides features for writing lyric poetry.
-
---------------------------------------------------------------------
-Feature overview
+|rhymer| provides features for writing lyric poetry, including AA/BB rhyme
+suggestions, synonym replacement, and syllable counting.
 
 ====================================================================
 Section 2: Usage                                      *rhymer-usage*
