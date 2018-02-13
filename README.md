@@ -1,8 +1,8 @@
 # `rhymer`
 
 `rhymer` is Vim plugin for writing lyric poetry. It was originally
-written as a rhyming assistant and syllable counter for during
-[UGAHacks](http://ugahacks.com/) 2018.
+written as a rhyming assistant and syllable counter for the
+[UGAHacks](http://ugahacks.com/) 2018 hackathon.
 
 ## Example
 
