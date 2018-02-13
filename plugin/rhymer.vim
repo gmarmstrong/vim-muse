@@ -1,5 +1,4 @@
-" Vim global plugin for suggesting rhymes
-
+" Get path of this file's parent directory
 let s:path = fnamemodify(resolve(expand('<sfile>:p')), ':h')
 
 " Installs nltk and cmudict if not already installed
@@ -56,7 +55,6 @@ function! rhymer#RhymeBot()
 
     " Insert choice
     normal! "qp
-    startinsert!
 
 endfunction
 
@@ -110,8 +108,8 @@ noremap <leader>m :call rhymer#SynonymBot()<CR>
 " Map RhymeBot to <leader>r (usually \r)
 noremap <leader>r :call rhymer#RhymeBot()<CR>
 
-" Use RhymeBot in insert mode
-inoremap <leader>r <C-o>:call rhymer#RhymeBot()<CR>
+" Use RhymeBot in insert mode (also <leader>r)
+inoremap <leader>r <C-o>:call rhymer#RhymeBot() \| startinsert! <CR>
 
 " Map SyllableCount to <leader>s (usually \s)
 noremap <leader>s :call rhymer#SyllableCount()<CR>
