@@ -3,14 +3,7 @@ let s:path = fnamemodify(resolve(expand('<sfile>:p')), ':h')
 
 " Installs nltk and cmudict if not already installed
 function! rhymer#InstallNLTK()
-    silent execute "!python3 -c \"import nltk\""
-    if v:shell_error
-        execute "!pip3 install nltk"
-    endif
-    silent execute "!python3 -c \"from nltk.corpus import cmudict\""
-    if v:shell_error
-        execute "!python3 -c \"import nltk; nltk.download('cmudict')\""
-    endif
+    execute "!" . s:path . "/../setup.sh"
 endfunction
 
 " Returns the visual selection
