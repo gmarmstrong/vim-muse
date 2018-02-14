@@ -30,7 +30,7 @@ function! rhymer#RhymeBot()
 
     " Get rhymes for the previous text
     let s:rhyming_word = rhymer#GetPrevText()
-    let s:rhymes = split(system("python3 " . s:path . "/../lib/dm_rhyme_interface.py " . s:rhyming_word))
+    let s:rhymes = split(system("python3 " . s:path . "/../lib/datamuse_interface.py rel_rhy " . s:rhyming_word))
 
     " Print list of rhymes
     echo 'Rhymes with ' . s:rhyming_word . ':'
@@ -55,7 +55,7 @@ function! rhymer#SynonymBot()
 
     " Get synonyms for the current word.
     let s:synonym_word = rhymer#GetCurrentWord()
-    let s:synonyms = split(system("python3 " . s:path . "/../lib/dm_synonym_interface.py " . s:synonym_word))
+    let s:synonyms = split(system("python3 " . s:path . "/../lib/datamuse_interface.py ml " . s:synonym_word))
 
     " Print list of synonyms
     echo 'Synonyms of ' . s:synonym_word . ':'
