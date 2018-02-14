@@ -1,9 +1,8 @@
 #!/usr/bin/env python3
 
-import re
 from nltk.corpus import cmudict
-
-dictionary = cmudict.dict()
+import argparse
+import re
 
 # Count syllables in a word
 def nsyl_word(word):
@@ -28,3 +27,9 @@ def nsyl_sentence(sentence):
     for word in sentence.split():
         count += nsyl_word(word)[0]
     return count
+
+parser = argparse.ArgumentParser()
+parser.add_argument("words")
+args = parser.parse_args()
+print(nsyl_sentence(args.words))
+dictionary = cmudict.dict()
