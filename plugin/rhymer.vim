@@ -2,7 +2,7 @@
 let s:path = fnamemodify(resolve(expand('<sfile>:p')), ':h')
 
 " Installs nltk and cmudict if not already installed
-function! rhymer#InstallNLTK()
+function! rhymer#Install()
     execute "!" . s:path . "/../setup.sh"
 endfunction
 

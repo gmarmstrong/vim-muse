@@ -20,7 +20,7 @@ tested or documented here.
 
 ### Further installation
 
-* Use `:call rhymer#InstallNLTK()` to add syllable support
+* Use `:call rhymer#Install()` to add syllable support
 * Use `:PlugUpdate` to update to the latest release
 
 ## Usage
