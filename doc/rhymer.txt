@@ -16,12 +16,9 @@ CONTENTS                                           *rhymer-contents*
 
     Introduction ......... |rhymer-introduction|
     Usage ................ |rhymer-usage|
-    Mappings ............. |rhymer-mappings|
-    Configuration ........ |rhymer-configuration|
+        Mappings ......... |rhymer-mappings|
+        Configuration .... |rhymer-configuration|
     License .............. |rhymer-license|
-    Bugs ................. |rhymer-bugs|
-    Contributing ......... |rhymer-contributing|
-    Changelog ............ |rhymer-changelog|
     Credits .............. |rhymer-credits|
 
 ====================================================================
@@ -41,34 +38,37 @@ Default mappings                                   *rhymer-mappings*
   ----------------------------------------------------------------
   LHS               RHS                                     MODE
   ----------------------------------------------------------------
-  <localleader>ml   |<plug>(rhymer-ml)|                       `nvix`
-  <localleader>sl   |<plug>(rhymer-sl)|                       `nvix`
-  <localleader>sp   |<plug>(rhymer-sp)|                       `nvix`
-  <localleader>jja  |<plug>(rhymer-rel_jja)|                  `nvix`
-  <localleader>jjb  |<plug>(rhymer-rel_jjb)|                  `nvix`
-  <localleader>syn  |<plug>(rhymer-rel_syn)|                  `nvix`
-  <localleader>trg  |<plug>(rhymer-rel_trg)|                  `nvix`
-  <localleader>ant  |<plug>(rhymer-rel_ant)|                  `nvix`
-  <localleader>spc  |<plug>(rhymer-rel_spc)|                  `nvix`
-  <localleader>gen  |<plug>(rhymer-rel_gen)|                  `nvix`
-  <localleader>com  |<plug>(rhymer-rel_com)|                  `nvix`
-  <localleader>par  |<plug>(rhymer-rel_par)|                  `nvix`
-  <localleader>bga  |<plug>(rhymer-rel_bga)|                  `nvix`
-  <localleader>bgb  |<plug>(rhymer-rel_bgb)|                  `nvix`
+  <localleader>ml   |<plug>(rhymer-ml)|                       `n`
+  <localleader>sl   |<plug>(rhymer-sl)|                       `n`
+  <localleader>sp   |<plug>(rhymer-sp)|                       `n`
+  <localleader>jja  |<plug>(rhymer-rel_jja)|                  `n`
+  <localleader>jjb  |<plug>(rhymer-rel_jjb)|                  `n`
+  <localleader>syn  |<plug>(rhymer-rel_syn)|                  `n`
+  <localleader>trg  |<plug>(rhymer-rel_trg)|                  `n`
+  <localleader>ant  |<plug>(rhymer-rel_ant)|                  `n`
+  <localleader>spc  |<plug>(rhymer-rel_spc)|                  `n`
+  <localleader>gen  |<plug>(rhymer-rel_gen)|                  `n`
+  <localleader>com  |<plug>(rhymer-rel_com)|                  `n`
+  <localleader>par  |<plug>(rhymer-rel_par)|                  `n`
+  <localleader>bga  |<plug>(rhymer-rel_bga)|                  `n`
+  <localleader>bgb  |<plug>(rhymer-rel_bgb)|                  `n`
   <localleader>rhy  |<plug>(rhymer-rel_rhy)|                  `n`
   <localleader>nrhy |<plug>(rhymer-rel_nrhy)|                 `n`
-  <localleader>hom  |<plug>(rhymer-rel_hom)|                  `nvix`
-  <localleader>cns  |<plug>(rhymer-rel_cns)|                  `nvix`
-  <localleader>nsyl |<plug>(rhymer-nsyl)|                     `nvix`
+  <localleader>hom  |<plug>(rhymer-rel_hom)|                  `n`
+  <localleader>cns  |<plug>(rhymer-rel_cns)|                  `n`
+  <localleader>nsyl |<plug>(rhymer-nsyl)|                     `n`
   ----------------------------------------------------------------
 
-====================================================================
+--------------------------------------------------------------------
 Configuration                                 *rhymer-configuration*
+
+To modify a mapping (for example, to map `_p` to `rhymer-rel_com`):
+`:nmap _p <Plug>rhymer-rel_com`
 
 ====================================================================
 License                                             *rhymer-license*
 
-rhymer is a Vim plugin for writing lyric poetry
+`rhymer` is a Vim plugin for writing lyric poetry
 Copyright (C) 2018  Guthrie McAfee Armstrong
 
 This program is free software: you can redistribute it and/or modify
@@ -85,18 +85,10 @@ You should have received a copy of the GNU General Public License
 along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 ====================================================================
-Bugs                                                   *rhymer-bugs*
-
-====================================================================
-Contributing                                   *rhymer-contributing*
-
-====================================================================
-Changelog                                         *rhymer-changelog*
-
-====================================================================
 Credits                                             *rhymer-credits*
 
 |rhymer| is developed and maintained by Guthrie McAfee Armstrong
-with help from Steven Tammen and Matthew Jones.
+with help from Steven Tammen and Matthew Jones. Margaret Sy wrote
+the Python Datamuse API wrapper, `python-datamuse`
 
 vim:filetype=help:textwidth=68:tabstop=4:norightleft:
