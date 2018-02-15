@@ -42,7 +42,7 @@ function! rhymer#DatamuseWordCompletion(findstart, base)
     if a:findstart == 1
         return col('.')-strlen(expand('<cword>'))
     elseif a:findstart == 0
-        return rhymer#DatamuseWordGetter("rel_suc")
+        return rhymer#DatamuseWordGetter("rel_bga")
     endif
 endfunction
 
@@ -179,4 +179,4 @@ nmap <Leader>cns   <Plug>(rhymer_rel_cns)
 nmap <Leader>nsyl  <Plug>(rhymer_nsyl)
 
 " Enable  auto-completion
-setlocal omnifunc=rhymer#DatamuseWordCompletion
+setlocal completefunc=rhymer#DatamuseWordCompletion
