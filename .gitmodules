@@ -1,0 +1,3 @@
+[submodule "lib/python-datamuse"]
+	path = lib/python-datamuse
+	url = https://github.com/gmarmstrong/python-datamuse.git
