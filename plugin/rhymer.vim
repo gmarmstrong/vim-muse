@@ -8,6 +8,7 @@ endfunction
 
 " Returns the visual selection
 function! rhymer#GetSelectedText()
+    " TODO Consider "xyiw
     normal "xy
     let s:result = getreg("x")
     return s:result
