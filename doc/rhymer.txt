@@ -138,28 +138,30 @@ Commands                                           *rhymer-commands*
 --------------------------------------------------------------------
 Default mappings                                   *rhymer-mappings*
 
+`<C-x><C-o>` will open the omnifunc completion menu.
+
   ----------------------------------------------------------------
-  Mapping           Function                                MODE
+  Mapping       Function                                MODE
   ----------------------------------------------------------------
-  <leader>ml   |<plug>(rhymer_ml)|                       `n`
-  <leader>sl   |<plug>(rhymer_sl)|                       `n`
-  <leader>sp   |<plug>(rhymer_sp)|                       `n`
-  <leader>jja  |<plug>(rhymer_rel_jja)|                  `n`
-  <leader>jjb  |<plug>(rhymer_rel_jjb)|                  `n`
-  <leader>syn  |<plug>(rhymer_rel_syn)|                  `n`
-  <leader>trg  |<plug>(rhymer_rel_trg)|                  `n`
-  <leader>ant  |<plug>(rhymer_rel_ant)|                  `n`
-  <leader>spc  |<plug>(rhymer_rel_spc)|                  `n`
-  <leader>gen  |<plug>(rhymer_rel_gen)|                  `n`
-  <leader>com  |<plug>(rhymer_rel_com)|                  `n`
-  <leader>par  |<plug>(rhymer_rel_par)|                  `n`
-  <leader>bga  |<plug>(rhymer_rel_bga)|                  `n`
-  <leader>bgb  |<plug>(rhymer_rel_bgb)|                  `n`
-  <leader>rhy  |<plug>(rhymer_rel_rhy)|                  `n`
-  <leader>nrhy |<plug>(rhymer_rel_nrhy)|                 `n`
-  <leader>hom  |<plug>(rhymer_rel_hom)|                  `n`
-  <leader>cns  |<plug>(rhymer_rel_cns)|                  `n`
-  <leader>nsyl |<plug>(rhymer_nsyl)|                     `n`
+  <leader>ml    |<plug>(rhymer_ml)|                       `n`
+  <leader>sl    |<plug>(rhymer_sl)|                       `n`
+  <leader>sp    |<plug>(rhymer_sp)|                       `n`
+  <leader>jja   |<plug>(rhymer_rel_jja)|                  `n`
+  <leader>jjb   |<plug>(rhymer_rel_jjb)|                  `n`
+  <leader>syn   |<plug>(rhymer_rel_syn)|                  `n`
+  <leader>trg   |<plug>(rhymer_rel_trg)|                  `n`
+  <leader>ant   |<plug>(rhymer_rel_ant)|                  `n`
+  <leader>spc   |<plug>(rhymer_rel_spc)|                  `n`
+  <leader>gen   |<plug>(rhymer_rel_gen)|                  `n`
+  <leader>com   |<plug>(rhymer_rel_com)|                  `n`
+  <leader>par   |<plug>(rhymer_rel_par)|                  `n`
+  <leader>bga   |<plug>(rhymer_rel_bga)|                  `n`
+  <leader>bgb   |<plug>(rhymer_rel_bgb)|                  `n`
+  <leader>rhy   |<plug>(rhymer_rel_rhy)|                  `n`
+  <leader>nrhy  |<plug>(rhymer_rel_nrhy)|                 `n`
+  <leader>hom   |<plug>(rhymer_rel_hom)|                  `n`
+  <leader>cns   |<plug>(rhymer_rel_cns)|                  `n`
+  <leader>nsyl  |<plug>(rhymer_nsyl)|                     `n`
   ----------------------------------------------------------------
 
 --------------------------------------------------------------------
