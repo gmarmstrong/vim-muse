@@ -8,7 +8,7 @@ endfunction
 
 " Returns the visual selection
 function! rhymer#GetSelectedText()
-    normal "xy
+    normal! "xy
     let s:result = getreg("x")
     return s:result
 endfunction
@@ -21,6 +21,32 @@ function! rhymer#GetPrevText()
     return s:selectedtext
 endfunction
 
+" Returns the previous word
+function! rhymer#GetPrevWord()
+    normal! geBve
+    let s:selectedtext = rhymer#GetSelectedText()
+    normal! E
+    return s:selectedtext
+endfunction
+
+" Returns the result of a datamuse query
+function! rhymer#DatamuseWordGetter(query)
+    " let s:baseword = expand("<cword>")
+    let s:baseword = rhymer#GetPrevWord()
+    let s:newwords = split(system("python3 " . s:path . "/../lib/datamuse_interface.py " . a:query . " " . s:baseword))
+    return s:newwords
+endfunction
+
+" Datamuse Omnifunc completion
+function! rhymer#DatamuseWordCompletion(findstart, base)
+    if a:findstart == 1
+        return col('.')-strlen(expand('<cword>'))
+    elseif a:findstart == 0
+        return rhymer#DatamuseWordGetter("rel_suc")
+    endif
+endfunction
+
+" Rhymes with the last word of the previous line
 function! rhymer#RhymeBot(query)
     " Get rhymes for the previous text
     let s:rhyming_word = rhymer#GetPrevText()
@@ -151,3 +177,6 @@ nmap <Leader>nry   <Plug>(rhymer_rel_nry)
 nmap <Leader>hom   <Plug>(rhymer_rel_hom)
 nmap <Leader>cns   <Plug>(rhymer_rel_cns)
 nmap <Leader>nsyl  <Plug>(rhymer_nsyl)
+
+" Enable auto-completion
+setlocal completefunc=rhymer#DatamuseWordCompletion
