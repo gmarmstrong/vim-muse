@@ -85,49 +85,69 @@ function! rhymer#SyllableCount()
     echo 'Counting syllables...'
     normal "syy
     let s:current_line = getreg("s")
-    let s:syllable_count = system("python3 $VIMDOTDIR/plugged/rhymer/lib/syl_interface.py \"" . s:current_line . "\"")
+    let s:syllable_count = system("python3 $VIMDOTDIR/plugged/rhymer/lib/nsyl/nsyl.py \"" . s:current_line . "\"")
     echo 'Syllables: ' . s:syllable_count
 endfunction
 
-" TODO Allow insert mode
+" Commands
+command! -buffer RhymerML       call rhymer#DatamuseWordBot("ml")
+command! -buffer RhymerSL       call rhymer#DatamuseWordBot("sl")
+command! -buffer RhymerSP       call rhymer#DatamuseWordBot("sp")
+command! -buffer RhymerRelJJA   call rhymer#DatamuseWordBot("rel_jja")
+command! -buffer RhymerRelJJB   call rhymer#DatamuseWordBot("rel_jjb")
+command! -buffer RhymerRelSYN   call rhymer#DatamuseWordBot("rel_syn")
+command! -buffer RhymerRelTRG   call rhymer#DatamuseWordBot("rel_trg")
+command! -buffer RhymerRelANT   call rhymer#DatamuseWordBot("rel_ant")
+command! -buffer RhymerRelSPC   call rhymer#DatamuseWordBot("rel_spc")
+command! -buffer RhymerRelGEN   call rhymer#DatamuseWordBot("rel_gen")
+command! -buffer RhymerRelCOM   call rhymer#DatamuseWordBot("rel_com")
+command! -buffer RhymerRelPAR   call rhymer#DatamuseWordBot("rel_par")
+command! -buffer RhymerRelBGA   call rhymer#DatamuseWordBot("rel_bga")
+command! -buffer RhymerRelBGB   call rhymer#DatamuseWordBot("rel_bgb")
+command! -buffer RhymerRelRHY   call rhymer#RhymeBot("rel_rhy")
+command! -buffer RhymerRelNRHY  call rhymer#RhymeBot("rel_nry")
+command! -buffer RhymerRelHOM   call rhymer#DatamuseWordBot("rel_hom")
+command! -buffer RhymerRelCNS   call rhymer#DatamuseWordBot("rel_cns")
+command! -buffer RhymerNSyl     call rhymer#SyllableCount()
+
 " Define mappings
-noremap <unique> <Plug>rhymer-ml :call rhymer#DatamuseWordBot("ml")<CR>
-noremap <unique> <Plug>rhymer-sl :call rhymer#DatamuseWordBot("sl")<CR>
-noremap <unique> <Plug>rhymer-sp :call rhymer#DatamuseWordBot("sp")<CR>
-noremap <unique> <Plug>rhymer-rel_jja :call rhymer#DatamuseWordBot("rel_jja")<CR>
-noremap <unique> <Plug>rhymer-rel_jjb :call rhymer#DatamuseWordBot("rel_jjb")<CR>
-noremap <unique> <Plug>rhymer-rel_syn :call rhymer#DatamuseWordBot("rel_syn")<CR>
-noremap <unique> <Plug>rhymer-rel_trg :call rhymer#DatamuseWordBot("rel_trg")<CR>
-noremap <unique> <Plug>rhymer-rel_ant :call rhymer#DatamuseWordBot("rel_ant")<CR>
-noremap <unique> <Plug>rhymer-rel_spc :call rhymer#DatamuseWordBot("rel_spc")<CR>
-noremap <unique> <Plug>rhymer-rel_gen :call rhymer#DatamuseWordBot("rel_gen")<CR>
-noremap <unique> <Plug>rhymer-rel_com :call rhymer#DatamuseWordBot("rel_com")<CR>
-noremap <unique> <Plug>rhymer-rel_par :call rhymer#DatamuseWordBot("rel_par")<CR>
-noremap <unique> <Plug>rhymer-rel_bga :call rhymer#DatamuseWordBot("rel_bga")<CR>
-noremap <unique> <Plug>rhymer-rel_bgb :call rhymer#DatamuseWordBot("rel_bgb")<CR>
-noremap <unique> <Plug>rhymer-rel_rhy :call rhymer#RhymeBot("rel_rhy")<CR>
-noremap <unique> <Plug>rhymer-rel_nrhy :call rhymer#RhymeBot("rel_nry")<CR>
-noremap <unique> <Plug>rhymer-rel_hom :call rhymer#DatamuseWordBot("rel_hom")<CR>
-noremap <unique> <Plug>rhymer-rel_cns :call rhymer#DatamuseWordBot("rel_cns")<CR>
-noremap <leader> <Plug>rhymer-nsyl :call rhymer#SyllableCount()<CR>
+noremap! <buffer> <unique> <plug>rhymer_ml       :call rhymer#DatamuseWordBot("ml")<CR>
+noremap! <buffer> <unique> <plug>rhymer_sl       :call rhymer#DatamuseWordBot("sl")<CR>
+noremap! <buffer> <unique> <plug>rhymer_sp       :call rhymer#DatamuseWordBot("sp")<CR>
+noremap! <buffer> <unique> <plug>rhymer_rel_jja  :call rhymer#DatamuseWordBot("rel_jja")<CR>
+noremap! <buffer> <unique> <plug>rhymer_rel_jjb  :call rhymer#DatamuseWordBot("rel_jjb")<CR>
+noremap! <buffer> <unique> <plug>rhymer_rel_syn  :call rhymer#DatamuseWordBot("rel_syn")<CR>
+noremap! <buffer> <unique> <plug>rhymer_rel_trg  :call rhymer#DatamuseWordBot("rel_trg")<CR>
+noremap! <buffer> <unique> <plug>rhymer_rel_ant  :call rhymer#DatamuseWordBot("rel_ant")<CR>
+noremap! <buffer> <unique> <plug>rhymer_rel_spc  :call rhymer#DatamuseWordBot("rel_spc")<CR>
+noremap! <buffer> <unique> <plug>rhymer_rel_gen  :call rhymer#DatamuseWordBot("rel_gen")<CR>
+noremap! <buffer> <unique> <plug>rhymer_rel_com  :call rhymer#DatamuseWordBot("rel_com")<CR>
+noremap! <buffer> <unique> <plug>rhymer_rel_par  :call rhymer#DatamuseWordBot("rel_par")<CR>
+noremap! <buffer> <unique> <plug>rhymer_rel_bga  :call rhymer#DatamuseWordBot("rel_bga")<CR>
+noremap! <buffer> <unique> <plug>rhymer_rel_bgb  :call rhymer#DatamuseWordBot("rel_bgb")<CR>
+noremap! <buffer> <unique> <plug>rhymer_rel_rhy  :call rhymer#RhymeBot("rel_rhy")<CR>
+noremap! <buffer> <unique> <plug>rhymer_rel_nry  :call rhymer#RhymeBot("rel_nry")<CR>
+noremap! <buffer> <unique> <plug>rhymer_rel_hom  :call rhymer#DatamuseWordBot("rel_hom")<CR>
+noremap! <buffer> <unique> <plug>rhymer_rel_cns  :call rhymer#DatamuseWordBot("rel_cns")<CR>
+noremap! <buffer> <unique> <plug>rhymer_nsyl     :call rhymer#SyllableCount()<CR>
 
 " Initialize default mappings
-nmap <localleader>ml <Plug>rhymer-ml
-nmap <localleader>sl <Plug>rhymer-sl
-nmap <localleader>sp <Plug>rhymer-sp
-nmap <localleader>jja <Plug>rhymer-rel_jja
-nmap <localleader>jjb <Plug>rhymer-rel_jjb
-nmap <localleader>syn <Plug>rhymer-rel_syn
-nmap <localleader>trg <Plug>rhymer-rel_trg
-nmap <localleader>ant <Plug>rhymer-rel_ant
-nmap <localleader>spc <Plug>rhymer-rel_spc
-nmap <localleader>gen <Plug>rhymer-rel_gen
-nmap <localleader>com <Plug>rhymer-rel_com
-nmap <localleader>par <Plug>rhymer-rel_par
-nmap <localleader>bga <Plug>rhymer-rel_bga
-nmap <localleader>bgb <Plug>rhymer-rel_bgb
-nmap <localleader>rhy <Plug>rhymer-rel_rhy
-nmap <localleader>nrhy <Plug>rhymer-rel_nrhy
-nmap <localleader>hom <Plug>rhymer-rel_hom
-nmap <localleader>cns <Plug>rhymer-rel_cns
-nmap <localleader>nsyl <Plug>rhymer-nsyl
+nmap <localleader>ml    <plug>rhymer_ml
+nmap <localleader>sl    <plug>rhymer_sl
+nmap <localleader>sp    <plug>rhymer_sp
+nmap <localleader>jja   <plug>rhymer_rel_jja
+nmap <localleader>jjb   <plug>rhymer_rel_jjb
+nmap <localleader>syn   <plug>rhymer_rel_syn
+nmap <localleader>trg   <plug>rhymer_rel_trg
+nmap <localleader>ant   <plug>rhymer_rel_ant
+nmap <localleader>spc   <plug>rhymer_rel_spc
+nmap <localleader>gen   <plug>rhymer_rel_gen
+nmap <localleader>com   <plug>rhymer_rel_com
+nmap <localleader>par   <plug>rhymer_rel_par
+nmap <localleader>bga   <plug>rhymer_rel_bga
+nmap <localleader>bgb   <plug>rhymer_rel_bgb
+nmap <localleader>rhy   <plug>rhymer_rel_rhy
+nmap <localleader>nry   <plug>rhymer_rel_nry
+nmap <localleader>hom   <plug>rhymer_rel_hom
+nmap <localleader>cns   <plug>rhymer_rel_cns
+nmap <localleader>nsyl  <plug>rhymer_nsyl

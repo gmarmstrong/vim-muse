@@ -4,6 +4,8 @@ from nltk.corpus import cmudict
 import argparse
 import re
 
+dictionary = cmudict.dict()
+
 # Count syllables in a word
 def nsyl_word(word):
     # See: https://stackoverflow.com/a/4103234/6791398
@@ -32,4 +34,3 @@ parser = argparse.ArgumentParser()
 parser.add_argument("words")
 args = parser.parse_args()
 print(nsyl_sentence(args.words))
-dictionary = cmudict.dict()
