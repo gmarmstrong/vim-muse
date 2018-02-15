@@ -4,6 +4,8 @@
 written as a rhyming assistant and syllable counter for the
 [UGAHacks](http://ugahacks.com/) 2018 hackathon.
 
+You can the find documentation by entering `:help rhymer` after installing.
+
 ## Example
 
 ![Demo recording of rhymer](https://i.imgur.com/eAKCKSR.gif)
@@ -17,27 +19,6 @@ tested or documented here.
 2. Add `Plug 'gmarmstrong/rhymer'` to the `plug` call in your `~/.vimrc`.
 3. Restart Vim
 4. Enter `:PlugInstall`
+5. Use `:call rhymer#Install()` to add syllable support
 
-### Further installation
-
-* Use `:call rhymer#Install()` to add syllable support
-* Use `:PlugUpdate` to update to the latest release
-
-## Usage
-
-### Rhyming with the previous line (AA/BB)
-
-1. Put the cursor below the line with which you want to rhyme
-2. Hit `<leader>r` (usually `\r`)
-3. Select a rhyming word
-
-### Replace a word with a synonym
-
-1. Put the cursor over the word which you want to replace
-2. Hit `<leader>m` (usually `\m`)
-3. Select a synonym
-
-### Syllable counting
-
-1. Put the cursor on the line of which to count the syllables
-2. Hit `<leader>s` (usually `\s`)
+Use `:PlugUpdate` to update to the latest release
