@@ -33,10 +33,113 @@ Usage                                                 *rhymer-usage*
 TODO See `:help *vimtex-default-mappings*`
 
 --------------------------------------------------------------------
+Commands                                           *rhymer-commands*
+
+                                    *RhymerML*
+                                    *<plug>rhymer_ml*
+`:RhymerML`       Offer a list of words with a related meaning to
+                `<cword>`. The user's selection replaces `<cword>`.
+
+                                    *RhymerSL*
+                                    *<plug>rhymer_sl*
+`:RhymerSL`       Offer a list of words that are pronounced
+                similarly to `<cword>`. The user's selection
+                replaces `<cword>`.
+
+                                    *RhymerSP*
+                                    *<plug>rhymer_sp*
+`:RhymerSP`       Offers a list of words that are spelled similarly
+                to `<cword>`. The user's selection
+                replaces `<cword>`.
+
+                                    *RhymerRelJJA*
+                                    *<plug>rhymer_rel_jja*
+`:RhymerRelJJA`   Offers a list of popular nouns modified by the
+                adjective `<cword>`. The user's selection replaces
+                `<cword>`.
+
+                                    *RhymerRelJJB*
+                                    *<plug>rhymer_rel_jjb*
+`:RhymerRelJJB`   Offers a list of popular adjectives modified by
+                the noun `<cword>`. The user's selection replaces
+                `<cword>`.
+
+                                    *RhymerRelSYN*
+                                    *<plug>rhymer_rel_syn*
+`:RhymerRelSYN`   Offers a list of synonyms of `<cword>`. The user's
+                selection replaces `<cword>`.
+
+                                    *RhymerRelTRG*
+                                    *<plug>rhymer_rel_trg*
+`:RhymerRelTRG`   Offers a list of "trigger" words that are
+                statistically associated with `<cword>`. The user's
+                selection replaces `<cword>`.
+
+                                    *RhymerRelANT*
+                                    *<plug>rhymer_rel_ant*
+`:RhymerRelANT`   Offers a list of antonyms of `<cword>`. The user's
+                selection replaces `<cword>`.
+
+                                    *RhymerRelSPC*
+                                    *<plug>rhymer_rel_spc*
+`:RhymerRelSPC`   Offers a list of direct hypernyms of `<cword>`.
+                The user's selection replaces `<cword>`.
+
+                                    *RhymerRelGEN*
+                                    *<plug>rhymer_rel_gen*
+`:RhymerRelGEN`   Offers a list of direct hyponyms of `<cword>`. The
+                user's selection replaces `<cword>`.
+
+                                    *RhymerRelCOM*
+                                    *<plug>rhymer_rel_com*
+`:RhymerRelCOM`   Offers a list of direct holonyms of `<cword>`. The
+                user's selection replaces `<cword>`.
+
+                                    *RhymerRelPAR*
+                                    *<plug>rhymer_rel_par*
+`:RhymerRelPAR`   Offers a list of direct meronyms of `<cword>`. The
+                user's selection replaces `<cword>`.
+
+                                    *RhymerRelBGA*
+                                    *<plug>rhymer_rel_bga*
+`:RhymerRelBGA`   Offers a list of frequent followers of `<cword>`.
+                The user's selection replaces `<cword>`.
+
+                                    *RhymerRelBGB*
+                                    *<plug>rhymer_rel_bgb*
+`:RhymerRelBGB`   Offers a list of frequent predecessors of
+                `<cword>`. The user's selection replaces `<cword>`.
+
+                                    *RhymerRelRHY*
+                                    *<plug>rhymer_rel_rhy*
+`:RhymerRelRHY`   Offers a list of perfect rhymes of the last word
+                of the previous line. The user's selection is pasted
+                beside the cursor.
+
+                                    *RhymerRelNRY*
+                                    *<plug>rhymer_rel_nry*
+`:RhymerRelNRY`   Offers a list of near rhymes of the last word of
+                the previous line. The user's selection is pasted
+                beside the cursor.
+
+                                    *RhymerRelHOM*
+                                    *<plug>rhymer_rel_hom*
+`:RhymerRelHOM`   Offers a list of homophones of `<cword>`. The
+                user's selection replaces `<cword>`.
+
+                                    *RhymerRelCNS*
+                                    *<plug>rhymer_rel_cns*
+`:RhymerRelCNS`   Offers a list of consonant matches of `<cword>`.
+                The user's selection replaces `<cword>`.
+
+`:RhymerNSyl`     Counts and displays the number of syllables in the
+                line.
+
+--------------------------------------------------------------------
 Default mappings                                   *rhymer-mappings*
 
   ----------------------------------------------------------------
-  LHS               RHS                                     MODE
+  Mapping           Function                                MODE
   ----------------------------------------------------------------
   <localleader>ml   |<plug>(rhymer-ml)|                       `n`
   <localleader>sl   |<plug>(rhymer-sl)|                       `n`
