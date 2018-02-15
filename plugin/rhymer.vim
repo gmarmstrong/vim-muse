@@ -8,15 +8,9 @@ endfunction
 
 " Returns the visual selection
 function! rhymer#GetSelectedText()
-    " TODO Consider "xyiw
     normal "xy
     let s:result = getreg("x")
     return s:result
-endfunction
-
-" Returns the current word
-function! rhymer#GetCurrentWord()
-    return expand("<cword>")
 endfunction
 
 " Returns the last word of the previous line
@@ -27,11 +21,12 @@ function! rhymer#GetPrevText()
     return s:selectedtext
 endfunction
 
-function! rhymer#RhymeBot()
-
+function! rhymer#RhymeBot(query)
     " Get rhymes for the previous text
     let s:rhyming_word = rhymer#GetPrevText()
-    let s:rhymes = split(system("python3 " . s:path . "/../lib/datamuse_interface.py rel_rhy " . s:rhyming_word))
+
+    " Get new words
+    let s:rhymes = split(system("python3 " . s:path . "/../lib/datamuse_interface.py " . a:query ." " . s:rhyming_word))
 
     " Print list of rhymes
     echo 'Rhymes with ' . s:rhyming_word . ':'
@@ -49,27 +44,26 @@ function! rhymer#RhymeBot()
 
     " Insert choice
     normal! "qp
-
 endfunction
 
-function! rhymer#SynonymBot()
+function! rhymer#DatamuseWordBot(query)
+    " Get the word under the cursor
+    let s:baseword = expand("<cword>")
 
-    " Get synonyms for the current word.
-    let s:synonym_word = rhymer#GetCurrentWord()
-    let s:synonyms = split(system("python3 " . s:path . "/../lib/datamuse_interface.py ml " . s:synonym_word))
+    " Get new words
+    let s:newwords = split(system("python3 " . s:path . "/../lib/datamuse_interface.py " . a:query . " " . s:baseword))
 
-    " Print list of synonyms
-    echo 'Synonyms of ' . s:synonym_word . ':'
+    " Print list of new words
     let s:count = 0
-    for s:synonym in s:synonyms
-        echom s:count . '.' s:synonym
+    for s:newword in s:newwords
+        echom s:count . '.' s:newword
         let s:count += 1
     endfor
 
     " Receive user input/choice
-    let @q = s:synonyms[nr2char(getchar())]
+    let @q = s:newwords[nr2char(getchar())]
 
-    " Replace word with synonym
+    " Replace current word with new word
     normal diw
     let prevchar = getline('.')[col('.')-1]
     let currchar = getline('.')[col('.')]
@@ -85,7 +79,6 @@ function! rhymer#SynonymBot()
             normal "qp
         endif
     endif
-
 endfunction
 
 function! rhymer#SyllableCount()
@@ -96,14 +89,45 @@ function! rhymer#SyllableCount()
     echo 'Syllables: ' . s:syllable_count
 endfunction
 
-" Map SynonymBot to <leader>m (usually \m)
-noremap <leader>m :call rhymer#SynonymBot()<CR>
+" TODO Allow insert mode
+" Define mappings
+noremap <unique> <Plug>rhymer-ml :call rhymer#SynonymBot("ml")<CR>
+noremap <unique> <Plug>rhymer-sl :call rhymer#SynonymBot("sl")<CR>
+noremap <unique> <Plug>rhymer-sp :call rhymer#SynonymBot("sp")<CR>
+noremap <unique> <Plug>rhymer-rel_jja :call rhymer#SynonymBot("rel_jja")<CR>
+noremap <unique> <Plug>rhymer-rel_jjb :call rhymer#SynonymBot("rel_jjb")<CR>
+noremap <unique> <Plug>rhymer-rel_syn :call rhymer#SynonymBot("rel_syn")<CR>
+noremap <unique> <Plug>rhymer-rel_trg :call rhymer#SynonymBot("rel_trg")<CR>
+noremap <unique> <Plug>rhymer-rel_ant :call rhymer#SynonymBot("rel_ant")<CR>
+noremap <unique> <Plug>rhymer-rel_spc :call rhymer#SynonymBot("rel_spc")<CR>
+noremap <unique> <Plug>rhymer-rel_gen :call rhymer#SynonymBot("rel_gen")<CR>
+noremap <unique> <Plug>rhymer-rel_com :call rhymer#SynonymBot("rel_com")<CR>
+noremap <unique> <Plug>rhymer-rel_par :call rhymer#SynonymBot("rel_par")<CR>
+noremap <unique> <Plug>rhymer-rel_bga :call rhymer#SynonymBot("rel_bga")<CR>
+noremap <unique> <Plug>rhymer-rel_bgb :call rhymer#SynonymBot("rel_bgb")<CR>
+noremap <unique> <Plug>rhymer-rel_rhy :call rhymer#RhymeBot("rel_rhy")<CR>
+noremap <unique> <Plug>rhymer-rel_nrhy :call rhymer#RhymeBot("rel_nry")<CR>
+noremap <unique> <Plug>rhymer-rel_hom :call rhymer#SynonymBot("rel_hom")<CR>
+noremap <unique> <Plug>rhymer-rel_cns :call rhymer#SynonymBot("rel_cns")<CR>
+noremap <leader> <Plug>rhymer-nsyl :call rhymer#SyllableCount()<CR>
 
-" Map RhymeBot to <leader>r (usually \r)
-noremap <leader>r :call rhymer#RhymeBot()<CR>
-
-" Use RhymeBot in insert mode (also <leader>r)
-inoremap <leader>r <C-o>:call rhymer#RhymeBot() \| startinsert! <CR>
-
-" Map SyllableCount to <leader>s (usually \s)
-noremap <leader>s :call rhymer#SyllableCount()<CR>
+" Initialize default mappings
+nmap <localleader>ml <Plug>rhymer-ml
+nmap <localleader>sl <Plug>rhymer-sl
+nmap <localleader>sp <Plug>rhymer-sp
+nmap <localleader>jja <Plug>rhymer-rel_jja
+nmap <localleader>jjb <Plug>rhymer-rel_jjb
+nmap <localleader>syn <Plug>rhymer-rel_syn
+nmap <localleader>trg <Plug>rhymer-rel_trg
+nmap <localleader>ant <Plug>rhymer-rel_ant
+nmap <localleader>spc <Plug>rhymer-rel_spc
+nmap <localleader>gen <Plug>rhymer-rel_gen
+nmap <localleader>com <Plug>rhymer-rel_com
+nmap <localleader>par <Plug>rhymer-rel_par
+nmap <localleader>bga <Plug>rhymer-rel_bga
+nmap <localleader>bgb <Plug>rhymer-rel_bgb
+nmap <localleader>rhy <Plug>rhymer-rel_rhy
+nmap <localleader>nrhy <Plug>rhymer-rel_nrhy
+nmap <localleader>hom <Plug>rhymer-rel_hom
+nmap <localleader>cns <Plug>rhymer-rel_cns
+nmap <localleader>nsyl <Plug>rhymer-nsyl
