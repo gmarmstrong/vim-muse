@@ -91,24 +91,24 @@ endfunction
 
 " TODO Allow insert mode
 " Define mappings
-noremap <unique> <Plug>rhymer-ml :call rhymer#SynonymBot("ml")<CR>
-noremap <unique> <Plug>rhymer-sl :call rhymer#SynonymBot("sl")<CR>
-noremap <unique> <Plug>rhymer-sp :call rhymer#SynonymBot("sp")<CR>
-noremap <unique> <Plug>rhymer-rel_jja :call rhymer#SynonymBot("rel_jja")<CR>
-noremap <unique> <Plug>rhymer-rel_jjb :call rhymer#SynonymBot("rel_jjb")<CR>
-noremap <unique> <Plug>rhymer-rel_syn :call rhymer#SynonymBot("rel_syn")<CR>
-noremap <unique> <Plug>rhymer-rel_trg :call rhymer#SynonymBot("rel_trg")<CR>
-noremap <unique> <Plug>rhymer-rel_ant :call rhymer#SynonymBot("rel_ant")<CR>
-noremap <unique> <Plug>rhymer-rel_spc :call rhymer#SynonymBot("rel_spc")<CR>
-noremap <unique> <Plug>rhymer-rel_gen :call rhymer#SynonymBot("rel_gen")<CR>
-noremap <unique> <Plug>rhymer-rel_com :call rhymer#SynonymBot("rel_com")<CR>
-noremap <unique> <Plug>rhymer-rel_par :call rhymer#SynonymBot("rel_par")<CR>
-noremap <unique> <Plug>rhymer-rel_bga :call rhymer#SynonymBot("rel_bga")<CR>
-noremap <unique> <Plug>rhymer-rel_bgb :call rhymer#SynonymBot("rel_bgb")<CR>
+noremap <unique> <Plug>rhymer-ml :call rhymer#DatamuseWordBot("ml")<CR>
+noremap <unique> <Plug>rhymer-sl :call rhymer#DatamuseWordBot("sl")<CR>
+noremap <unique> <Plug>rhymer-sp :call rhymer#DatamuseWordBot("sp")<CR>
+noremap <unique> <Plug>rhymer-rel_jja :call rhymer#DatamuseWordBot("rel_jja")<CR>
+noremap <unique> <Plug>rhymer-rel_jjb :call rhymer#DatamuseWordBot("rel_jjb")<CR>
+noremap <unique> <Plug>rhymer-rel_syn :call rhymer#DatamuseWordBot("rel_syn")<CR>
+noremap <unique> <Plug>rhymer-rel_trg :call rhymer#DatamuseWordBot("rel_trg")<CR>
+noremap <unique> <Plug>rhymer-rel_ant :call rhymer#DatamuseWordBot("rel_ant")<CR>
+noremap <unique> <Plug>rhymer-rel_spc :call rhymer#DatamuseWordBot("rel_spc")<CR>
+noremap <unique> <Plug>rhymer-rel_gen :call rhymer#DatamuseWordBot("rel_gen")<CR>
+noremap <unique> <Plug>rhymer-rel_com :call rhymer#DatamuseWordBot("rel_com")<CR>
+noremap <unique> <Plug>rhymer-rel_par :call rhymer#DatamuseWordBot("rel_par")<CR>
+noremap <unique> <Plug>rhymer-rel_bga :call rhymer#DatamuseWordBot("rel_bga")<CR>
+noremap <unique> <Plug>rhymer-rel_bgb :call rhymer#DatamuseWordBot("rel_bgb")<CR>
 noremap <unique> <Plug>rhymer-rel_rhy :call rhymer#RhymeBot("rel_rhy")<CR>
 noremap <unique> <Plug>rhymer-rel_nrhy :call rhymer#RhymeBot("rel_nry")<CR>
-noremap <unique> <Plug>rhymer-rel_hom :call rhymer#SynonymBot("rel_hom")<CR>
-noremap <unique> <Plug>rhymer-rel_cns :call rhymer#SynonymBot("rel_cns")<CR>
+noremap <unique> <Plug>rhymer-rel_hom :call rhymer#DatamuseWordBot("rel_hom")<CR>
+noremap <unique> <Plug>rhymer-rel_cns :call rhymer#DatamuseWordBot("rel_cns")<CR>
 noremap <leader> <Plug>rhymer-nsyl :call rhymer#SyllableCount()<CR>
 
 " Initialize default mappings
