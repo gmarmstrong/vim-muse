@@ -178,5 +178,5 @@ nmap <Leader>hom   <Plug>(rhymer_rel_hom)
 nmap <Leader>cns   <Plug>(rhymer_rel_cns)
 nmap <Leader>nsyl  <Plug>(rhymer_nsyl)
 
-" Enable auto-completion
-setlocal completefunc=rhymer#DatamuseWordCompletion
+" Enable  auto-completion
+setlocal omnifunc=rhymer#DatamuseWordCompletion
