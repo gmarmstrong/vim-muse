@@ -135,7 +135,7 @@ command! -buffer MuseRelRHY     call muse#RhymeBot("rel_rhy")
 command! -buffer MuseRelNRHY    call muse#RhymeBot("rel_nry")
 command! -buffer MuseRelHOM     call muse#DatamuseWordBot("rel_hom")
 command! -buffer MuseRelCNS     call muse#DatamuseWordBot("rel_cns")
-command! -buffer MuseNSyl       call muse#SyllableCount()
+command! -buffer MuseNSYL       call muse#SyllableCount()
 
 " Define mappings
 nnoremap <buffer> <unique> <Plug>(muse_ml)      :call muse#DatamuseWordBot("ml")<CR>

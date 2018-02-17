@@ -13,10 +13,9 @@
 CONTENTS                                           *muse-contents*
 
     Introduction ......... |muse-introduction|
-    Usage ................ |muse-usage|
-        Commands ......... |muse-commands|
-        Mappings ......... |muse-mappings|
-        Configuration .... |muse-configuration|
+    Commands ............. |muse-commands|
+    Mappings ............. |muse-mappings|
+    Configuration ........ |muse-configuration|
     License .............. |muse-license|
     Credits .............. |muse-credits|
 
@@ -27,9 +26,6 @@ Introduction                                   *muse-introduction*
 rhyme suggestions, synonym replacement, and syllable counting.
 
 ====================================================================
-Usage                                                 *muse-usage*
-
---------------------------------------------------------------------
 Commands                                           *muse-commands*
 
                                     *MuseML*
@@ -129,12 +125,12 @@ Commands                                           *muse-commands*
 `:MuseRelCNS`   Offers a list of consonant matches of `<cword>`.
                 The user's selection replaces `<cword>`.
 
-                                    *MuseNSyl*
+                                    *MuseNSYL*
                                     *<plug>(muse_nsyl)*
-`:MuseNSyl`     Counts and displays the number of syllables in the
+`:MuseNSYL`     Counts and displays the number of syllables in the
                 line.
 
---------------------------------------------------------------------
+====================================================================
 Default mappings                                   *muse-mappings*
 
 `<C-x><C-o>` will open the `omnifunc` completion menu.
@@ -163,7 +159,7 @@ Default mappings                                   *muse-mappings*
   <leader>nsyl  |<plug>(muse_nsyl)|                     `n`
   ----------------------------------------------------------------
 
---------------------------------------------------------------------
+====================================================================
 Configuration                                 *muse-configuration*
 
 To modify a mapping (for example, to map `_p` to `muse_rel_com`):
