@@ -2,7 +2,7 @@
 
 # Install python-datamuse
 if ! python3 -c "import python-datamuse"; then
-    pip3 install python-datamuse
+    pip3 install datamuse
 fi
 
 # Install nltk
