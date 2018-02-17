@@ -1,0 +1,198 @@
+*muse.txt* plugin for writing poetry and prose
+
+                     _ __ ___  _   _ ___  ___ ~
+                    | '_ ` _ \| | | / __|/ _ \~
+                    | | | | | | |_| \__ \  __/~
+                    |_| |_| |_|\__,_|___/\___|~
+
+                         Writing assistant,
+                      for the poetic Vimmers,
+                         maybe for haikus.
+
+====================================================================
+CONTENTS                                           *muse-contents*
+
+    Introduction ......... |muse-introduction|
+    Usage ................ |muse-usage|
+        Commands ......... |muse-commands|
+        Mappings ......... |muse-mappings|
+        Configuration .... |muse-configuration|
+    License .............. |muse-license|
+    Credits .............. |muse-credits|
+
+====================================================================
+Introduction                                   *muse-introduction*
+
+|muse| provides features for writing lyric poetry, including AABB
+rhyme suggestions, synonym replacement, and syllable counting.
+
+====================================================================
+Usage                                                 *muse-usage*
+
+--------------------------------------------------------------------
+Commands                                           *muse-commands*
+
+                                    *MuseML*
+                                    *<plug>(muse_ml)*
+`:MuseML`       Offers a list of words with a related meaning to
+                `<cword>`. The user's selection replaces `<cword>`.
+
+                                    *MuseSL*
+                                    *<plug>(muse_sl)*
+`:MuseSL`       Offers a list of words that are pronounced
+                similarly to `<cword>`. The user's selection
+                replaces `<cword>`.
+
+                                    *MuseSP*
+                                    *<plug>(muse_sp)*
+`:MuseSP`       Offers a list of words that are spelled similarly
+                to `<cword>`. The user's selection
+                replaces `<cword>`.
+
+                                    *MuseRelJJA*
+                                    *<plug>(muse_rel_jja)*
+`:MuseRelJJA`   Offers a list of popular nouns modified by the
+                adjective `<cword>`. The user's selection replaces
+                `<cword>`.
+
+                                    *MuseRelJJB*
+                                    *<plug>(muse_rel_jjb)*
+`:MuseRelJJB`   Offers a list of popular adjectives modified by
+                the noun `<cword>`. The user's selection replaces
+                `<cword>`.
+
+                                    *MuseRelSYN*
+                                    *<plug>(muse_rel_syn)*
+`:MuseRelSYN`   Offers a list of synonyms of `<cword>`. The user's
+                selection replaces `<cword>`.
+
+                                    *MuseRelTRG*
+                                    *<plug>(muse_rel_trg)*
+`:MuseRelTRG`   Offers a list of "trigger" words that are
+                statistically associated with `<cword>`. The user's
+                selection replaces `<cword>`.
+
+                                    *MuseRelANT*
+                                    *<plug>(muse_rel_ant)*
+`:MuseRelANT`   Offers a list of antonyms of `<cword>`. The user's
+                selection replaces `<cword>`.
+
+                                    *MuseRelSPC*
+                                    *<plug>(muse_rel_spc)*
+`:MuseRelSPC`   Offers a list of direct hypernyms of `<cword>`.
+                The user's selection replaces `<cword>`.
+
+                                    *MuseRelGEN*
+                                    *<plug>(muse_rel_gen)*
+`:MuseRelGEN`   Offers a list of direct hyponyms of `<cword>`. The
+                user's selection replaces `<cword>`.
+
+                                    *MuseRelCOM*
+                                    *<plug>(muse_rel_com)*
+`:MuseRelCOM`   Offers a list of direct holonyms of `<cword>`. The
+                user's selection replaces `<cword>`.
+
+                                    *MuseRelPAR*
+                                    *<plug>(muse_rel_par)*
+`:MuseRelPAR`   Offers a list of direct meronyms of `<cword>`. The
+                user's selection replaces `<cword>`.
+
+                                    *MuseRelBGA*
+                                    *<plug>(muse_rel_bga)*
+`:MuseRelBGA`   Offers a list of frequent followers of `<cword>`.
+                The user's selection replaces `<cword>`.
+
+                                    *MuseRelBGB*
+                                    *<plug>(muse_rel_bgb)*
+`:MuseRelBGB`   Offers a list of frequent predecessors of
+                `<cword>`. The user's selection replaces `<cword>`.
+
+                                    *MuseRelRHY*
+                                    *<plug>(muse_rel_rhy)*
+`:MuseRelRHY`   Offers a list of perfect rhymes of the last word
+                of the previous line. The user's selection is pasted
+                beside the cursor.
+
+                                    *MuseRelNRY*
+                                    *<plug>(muse_rel_nry)*
+`:MuseRelNRY`   Offers a list of near rhymes of the last word of
+                the previous line. The user's selection is pasted
+                beside the cursor.
+
+                                    *MuseRelHOM*
+                                    *<plug>(muse_rel_hom)*
+`:MuseRelHOM`   Offers a list of homophones of `<cword>`. The
+                user's selection replaces `<cword>`.
+
+                                    *MuseRelCNS*
+                                    *<plug>(muse_rel_cns)*
+`:MuseRelCNS`   Offers a list of consonant matches of `<cword>`.
+                The user's selection replaces `<cword>`.
+
+                                    *MuseNSyl*
+                                    *<plug>(muse_nsyl)*
+`:MuseNSyl`     Counts and displays the number of syllables in the
+                line.
+
+--------------------------------------------------------------------
+Default mappings                                   *muse-mappings*
+
+`<C-x><C-o>` will open the `omnifunc` completion menu.
+
+  ----------------------------------------------------------------
+  Mapping       Function                                MODE
+  ----------------------------------------------------------------
+  <leader>ml    |<plug>(muse_ml)|                       `n`
+  <leader>sl    |<plug>(muse_sl)|                       `n`
+  <leader>sp    |<plug>(muse_sp)|                       `n`
+  <leader>jja   |<plug>(muse_rel_jja)|                  `n`
+  <leader>jjb   |<plug>(muse_rel_jjb)|                  `n`
+  <leader>syn   |<plug>(muse_rel_syn)|                  `n`
+  <leader>trg   |<plug>(muse_rel_trg)|                  `n`
+  <leader>ant   |<plug>(muse_rel_ant)|                  `n`
+  <leader>spc   |<plug>(muse_rel_spc)|                  `n`
+  <leader>gen   |<plug>(muse_rel_gen)|                  `n`
+  <leader>com   |<plug>(muse_rel_com)|                  `n`
+  <leader>par   |<plug>(muse_rel_par)|                  `n`
+  <leader>bga   |<plug>(muse_rel_bga)|                  `n`
+  <leader>bgb   |<plug>(muse_rel_bgb)|                  `n`
+  <leader>rhy   |<plug>(muse_rel_rhy)|                  `n`
+  <leader>nrhy  |<plug>(muse_rel_nrhy)|                 `n`
+  <leader>hom   |<plug>(muse_rel_hom)|                  `n`
+  <leader>cns   |<plug>(muse_rel_cns)|                  `n`
+  <leader>nsyl  |<plug>(muse_nsyl)|                     `n`
+  ----------------------------------------------------------------
+
+--------------------------------------------------------------------
+Configuration                                 *muse-configuration*
+
+To modify a mapping (for example, to map `_p` to `muse_rel_com`):
+`:nmap _p <Plug>(muse_rel_com)`
+
+====================================================================
+License                                             *muse-license*
+
+`muse` is a Vim plugin for writing lyric poetry
+Copyright (C) 2018  Guthrie McAfee Armstrong
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful, but
+WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
+General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with this program. If not, see <http://www.gnu.org/licenses/>.
+
+====================================================================
+Credits                                             *muse-credits*
+
+|muse| is developed and maintained by Guthrie McAfee Armstrong
+with help from Steven Tammen and Matthew Jones. Margaret Sy wrote
+the Datamuse API Python wrapper, `python-datamuse`.
+
+vim:filetype=help:textwidth=68:tabstop=4:norightleft:
