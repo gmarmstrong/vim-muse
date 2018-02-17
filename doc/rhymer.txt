@@ -16,6 +16,7 @@ CONTENTS                                           *rhymer-contents*
 
     Introduction ......... |rhymer-introduction|
     Usage ................ |rhymer-usage|
+        Commands ......... |rhymer-commands|
         Mappings ......... |rhymer-mappings|
         Configuration .... |rhymer-configuration|
     License .............. |rhymer-license|
@@ -138,7 +139,7 @@ Commands                                           *rhymer-commands*
 --------------------------------------------------------------------
 Default mappings                                   *rhymer-mappings*
 
-`<C-x><C-o>` will open the omnifunc completion menu.
+`<C-x><C-o>` will open the `omnifunc` completion menu.
 
   ----------------------------------------------------------------
   Mapping       Function                                MODE
