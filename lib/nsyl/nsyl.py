@@ -21,7 +21,7 @@ def nsyl_sentence(sentence):
     # Error on typos
     for word in sentence.split():
         if word.lower() not in dictionary:
-            print("Typo in word: " + word + ". Aborting.")
+            print("?")
             quit()
 
     # Count syllables
