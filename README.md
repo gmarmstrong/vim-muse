@@ -1,4 +1,4 @@
-# `vim-muse`
+# `muse`
 
 `muse` is Vim plugin for writing poetry and prose. It was originally written
 (named `rhymer`) as a rhyming assistant and syllable counter for the
