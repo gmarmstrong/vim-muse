@@ -1,16 +1,10 @@
 #!/usr/bin/env python3
 
-import os
-import json
 import argparse
+import datamuse
 import importlib.util
-
-# Import datamuse.py
-curr_path = os.path.dirname(os.path.realpath(__file__))
-datamuse_path = curr_path + "/python-datamuse/datamuse/datamuse.py"
-spec = importlib.util.spec_from_file_location("datamuse", datamuse_path)
-datamuse = importlib.util.module_from_spec(spec)
-spec.loader.exec_module(datamuse)
+import json
+import os
 
 api = datamuse.Datamuse()
 parser = argparse.ArgumentParser()
