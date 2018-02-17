@@ -20,6 +20,7 @@ tested or documented here.
 2. Add `Plug 'gmarmstrong/vim-muse'` to the `plug` call in your `~/.vimrc`.
 3. Restart Vim
 4. Enter `:PlugInstall`
-5. Use `:call muse#Install()` to add syllable support
+5. Restart Vim
+5. Enter `:MuseInstall`
 
 Use `:PlugUpdate` to update to the latest release
