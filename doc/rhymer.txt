@@ -31,8 +31,6 @@ rhyme suggestions, synonym replacement, and syllable counting.
 ====================================================================
 Usage                                                 *rhymer-usage*
 
-TODO See `:help *vimtex-default-mappings*`
-
 --------------------------------------------------------------------
 Commands                                           *rhymer-commands*
 
