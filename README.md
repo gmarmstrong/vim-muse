@@ -1,7 +1,7 @@
 # `vim-muse`
 
-`muse` is Vim plugin for writing poetry and prose. It was originally written as
-a rhyming assistant and syllable counter for the
+`muse` is Vim plugin for writing poetry and prose. It was originally written
+(named `rhymer`) as a rhyming assistant and syllable counter for the
 [UGAHacks](http://ugahacks.com/) 2018 hackathon.
 
 You can the find documentation in `doc/muse.txt`, or by entering `:help muse`
