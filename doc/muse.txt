@@ -10,9 +10,11 @@
                          maybe for haikus.
 
 ====================================================================
-CONTENTS                                           *muse-contents*
+CONTENTS                                             *muse-contents*
 
     Introduction ......... |muse-introduction|
+    Installation ......... |muse-installation|
+    Updating ............. |muse-updating|
     Commands ............. |muse-commands|
     Mappings ............. |muse-mappings|
     Configuration ........ |muse-configuration|
@@ -20,13 +22,34 @@ CONTENTS                                           *muse-contents*
     Credits .............. |muse-credits|
 
 ====================================================================
-Introduction                                   *muse-introduction*
+Introduction                                     *muse-introduction*
 
-|muse| provides features for writing lyric poetry, including AABB
-rhyme suggestions, synonym replacement, and syllable counting.
+|muse| provides features for writing poetry and prose, including
+AABB rhyme suggestions, synonym replacement, and syllable counting.
+It was originally written under the name `rhymer` as a rhyming
+assistant and syllable counter for the UGAHacks 2018 hackathon.
 
 ====================================================================
-Commands                                           *muse-commands*
+Installation                                     *muse-installation*
+
+`muse` should work with any plugin manager, but only `vim-plug` is
+currently tested or documented here.
+
+1. Install [`vim-plug`](https://github.com/junegunn/vim-plug)
+2. Add `Plug 'gmarmstrong/vim-muse'` to the `plug` call in your `~/.vimrc`.
+3. Restart Vim
+4. Enter `:PlugInstall`
+5. Restart Vim
+5. Enter `:MuseInstall`
+
+====================================================================
+Updating                                             *muse-updating*
+
+Use `:PlugUpdate vim-muse` to update to the latest release of `muse`.
+Use `:MuseUpdate` to update its dependencies.
+
+====================================================================
+Commands                                             *muse-commands*
 
                                     *MuseML*
                                     *<plug>(muse_ml)*
@@ -131,7 +154,7 @@ Commands                                           *muse-commands*
                 line.
 
 ====================================================================
-Default mappings                                   *muse-mappings*
+Default mappings                                     *muse-mappings*
 
 `<C-x><C-o>` will open the `omnifunc` completion menu.
 
@@ -160,13 +183,13 @@ Default mappings                                   *muse-mappings*
   ----------------------------------------------------------------
 
 ====================================================================
-Configuration                                 *muse-configuration*
+Configuration                                   *muse-configuration*
 
 To modify a mapping (for example, to map `_p` to `muse_rel_com`):
 `:nmap _p <Plug>(muse_rel_com)`
 
 ====================================================================
-License                                             *muse-license*
+License                                               *muse-license*
 
 `muse` is a Vim plugin for writing lyric poetry
 Copyright (C) 2018  Guthrie McAfee Armstrong
@@ -185,7 +208,7 @@ You should have received a copy of the GNU General Public License
 along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 ====================================================================
-Credits                                             *muse-credits*
+Credits                                               *muse-credits*
 
 |muse| is developed and maintained by Guthrie McAfee Armstrong
 with help from Steven Tammen and Matthew Jones. Margaret Sy wrote
