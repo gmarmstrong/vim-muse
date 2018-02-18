@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
 
 # Install python-datamuse
-if ! python3 -c "import python-datamuse"; then
-    pip3 install datamuse
+if ! python3 -c "import datamuse"; then
+    pip3 install python-datamuse
 fi
 
 # Install nltk

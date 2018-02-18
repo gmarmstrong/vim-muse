@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 
 import argparse
-import datamuse
+from datamuse import datamuse
 import importlib.util
 import json
 import os
