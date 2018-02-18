@@ -3,12 +3,12 @@ let s:path = fnamemodify(resolve(expand('<sfile>:p')), ':h')
 
 " Installs nltk and cmudict if not already installed
 function! muse#Install()
-    execute "!" . s:path . "/../setup.sh"
+    execute "!" . s:path . "/../scripts/setup.sh"
 endfunction
 
 " Installs nltk and cmudict if not already installed
 function! muse#Update()
-    execute "!" . s:path . "/../update.sh"
+    execute "!" . s:path . "/../scripts/update.sh"
 endfunction
 
 " Returns the visual selection
