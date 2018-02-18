@@ -1,0 +1,26 @@
+sudo: false
+dist: "trusty"
+
+language: vim
+
+addons:
+    apt:
+        packages:
+            - "python3"
+            - "python3-pip"
+
+before_install:
+    - "./setup.sh"
+
+before_script: |
+    git clone https://github.com/junegunn/vader.vim.git
+
+script: |
+    vim -Nu <(cat << VIMRC
+    filetype off
+    set rtp+=vader.vim
+    set rtp+=.
+    set rtp+=after
+    filetype plugin indent on
+    syntax enable
+    VIMRC) -c 'Vader! test/*' > /dev/null

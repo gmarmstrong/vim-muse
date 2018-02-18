@@ -1,0 +1,19 @@
+Given (Humpty Dumpty):
+  Humpty Dumpty sat on a wall,
+  Humpty Dumpty had a great fall.
+  All the king's horses and all the king's men
+  Couldn't put Humpty together again.
+
+Execute (Means like):
+  3
+  call muse#DatamuseInterface("rel_syn",1)
+  normal! w
+  call muse#DatamuseInterface("ml",3)
+  normal! $
+  call muse#DatamuseInterface("ml",0)
+
+Expect (Humpty Dumpty modified):
+  Humpty Dumpty sat on a wall,
+  Humpty Dumpty had a great fall.
+  whole red king's horses and all the king's manpower
+  Couldn't put Humpty together again.

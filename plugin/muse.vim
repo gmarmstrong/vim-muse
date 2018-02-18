@@ -8,9 +8,13 @@ endfunction
 
 " Returns the visual selection
 function! muse#GetSelectedText()
-    normal! "xy
-    let s:result = getreg("x")
-    return s:result
+    try
+        let x_prev = @x
+        normal "xy
+        return @x
+    finally
+        let @a = x_prev
+    endtry
 endfunction
 
 " Returns the last word of the previous line
@@ -29,15 +33,117 @@ function! muse#GetPrevWord()
     return s:selectedtext
 endfunction
 
-" Returns the result of a datamuse query
-function! muse#DatamuseWordGetter(query)
-    " let s:baseword = expand("<cword>")
-    let s:baseword = muse#GetPrevWord()
-    let s:newwords = split(system("python3 " . s:path . "/../lib/datamuse_interface.py " . a:query . " " . s:baseword))
-    return s:newwords
+" Removes and returns current text
+function! muse#PopText()
+    " Switch on mode
+    if mode() == 'n'                  " Normal
+        let s:tmpword = expand("<cword>")
+        normal! diw
+        return s:tmpword
+    elseif mode() == 'no'             " Operator-pending
+        let s:tmpword = expand("<cword>")
+        normal! diw
+        return s:tmpword
+    elseif mode() == 'v'              " Visual by character
+        let s:tmpword = muse#GetSelectedText()
+        normal! d
+        return s:tmpword
+    elseif mode() == 'V'              " Visual by line
+        let s:tmpword = muse#GetSelectedText()
+        normal! d
+        return s:tmpword
+    elseif mode() == 'CTRL-V'         " Visual blockwise
+        let s:tmpword = muse#GetSelectedText()
+        normal! d
+        return s:tmpword
+    elseif mode() == 's'              " Select by character
+        let s:tmpword = muse#GetSelectedText()
+        normal! d
+        return s:tmpword
+    elseif mode() == 'S'              " Select by line
+        let s:tmpword = muse#GetSelectedText()
+        normal! d
+        return s:tmpword
+    elseif mode() == 'CTRL-S'         " Select blockwise
+        let s:tmpword = muse#GetSelectedText()
+        normal! d
+        return s:tmpword
+    elseif mode() == 'i'              " Insert
+        let s:tmpword = expand("<cword>")
+        normal! diw
+        return s:tmpword
+    elseif mode() == 'ic'             " Insert completion (|compl-generic|)
+        let s:tmpword = expand("<cword>")
+        normal! diw
+        return s:tmpword
+    elseif mode() == 'ix'             " Insert completion (|i_CTRL-X|)
+        let s:tmpword = expand("<cword>")
+        normal! diw
+        return s:tmpword
+    elseif mode() == 'R'              " Replace (|R|)
+        let s:tmpword = expand("<cword>")
+        normal! diw
+        return s:tmpword
+    elseif mode() == 'Rc'             " Replace completion (|compl-generic|)
+        let s:tmpword = expand("<cword>")
+        normal! diw
+        return s:tmpword
+    elseif mode() == 'Rx'             " Replace completion (|i_CTRL-X|)
+        let s:tmpword = expand("<cword>")
+        normal! diw
+        return s:tmpword
+    elseif mode() == 'c'              " Command-line editing
+        let s:tmpword = expand("<cword>")
+        normal! diw
+        return s:tmpword
+    elseif mode() == 'cv'             " Vim Ex mode (gQ)
+        let s:tmpword = expand("<cword>")
+        normal! diw
+        return s:tmpword
+    elseif mode() == 'ce'             " Normal Ex mode (Q)
+        let s:tmpword = expand("<cword>")
+        normal! diw
+        return s:tmpword
+    elseif mode() == 'r'              " Hit-enter prompt
+        let s:tmpword = expand("<cword>")
+        normal! diw
+        return s:tmpword
+    elseif mode() == 'rm'             " The -- more -- prompt
+        let s:tmpword = expand("<cword>")
+        normal! diw
+        return s:tmpword
+    elseif mode() == 'r?'             " A |:confirm| query of some sort
+        let s:tmpword = expand("<cword>")
+        normal! diw
+        return s:tmpword
+    elseif mode() == '!'              " Shell or external command is executing
+        let s:tmpword = expand("<cword>")
+        normal! diw
+        return s:tmpword
+    elseif mode() == 't'              " Terminal mode: keys go to the job
+        let s:tmpword = expand("<cword>")
+        normal! diw
+        return s:tmpword
+    else
+        echo "You are in a strange place..."
+    endif
+endfunction
+
+" Replaces current text with new word
+function! muse#DatamuseInterface(query, choice)
+    let s:baseword = muse#PopText()
+    let s:datamuse_interface_path = "\"" . s:path . "/../lib/datamuse_interface.py\""
+    let s:newwords = split(system("python3 " . s:datamuse_interface_path . " " . a:query . " \"" . s:baseword . "\""))
+    if expand(a:choice) == "user"
+        let s:newword = muse#ListWords(s:newwords)
+    else
+        let s:newword = s:newwords[a:choice]
+    endif
+    call muse#ReplaceCurrentText(s:newword)
 endfunction
 
 " Datamuse Omnifunc completion
+" FIXME DatamuseWordGetter no longer exists
 function! muse#DatamuseWordCompletion(findstart, base)
     if a:findstart == 1
         return col('.')-strlen(expand('<cword>'))
@@ -72,90 +178,91 @@ function! muse#RhymeBot(query)
     normal! "qp
 endfunction
 
-function! muse#DatamuseWordBot(query)
-    " Get the word under the cursor
-    let s:baseword = expand("<cword>")
-
-    " Get new words
-    let s:newwords = split(system("python3 " . s:path . "/../lib/datamuse_interface.py " . a:query . " " . s:baseword))
-
-    " Print list of new words
+" Print list of words and return user's choice
+function! muse#ListWords(newwords)
     let s:count = 0
-    for s:newword in s:newwords
-        echom s:count . '.' s:newword
+    for s:newword in a:newwords
+        echom s:count . '. ' . s:newword
         let s:count += 1
     endfor
+    return a:newwords[nr2char(getchar())]
+endfunction
 
-    " Receive user input/choice
-    let @q = s:newwords[nr2char(getchar())]
-
-    " Replace current word with new word
-    normal diw
-    let prevchar = getline('.')[col('.')-1]
-    let currchar = getline('.')[col('.')]
-    let nextchar = getline('.')[col('.')+1]
-    if col('.')+1 == col('$') && col('.')+1 != 1    " If end of line
-        normal "qp
-    elseif currchar != " "                          " If middle of line
-        normal "qP
+" Replace current word with new word
+function! muse#ReplaceCurrentText(newword)
+    if mode() == 'v' || mode() == 'V' || mode() == 'CTRL-V'
+        " FIXME Off-by-one whitespace at end of line
+        normal! d
+        let @q = s:newword
+        normal! "qP
     else
-        if prevchar == " "                          " If punctuation
-            normal "qP
-        else                                        " If beginning of line
-            normal "qp
+        let @q = a:newword
+        let s:prevchar = getline('.')[col('.')-1]
+        let s:currchar = getline('.')[col('.')]
+        if col('.')+1 == col('$') && col('.')+1 != 1    " If end of line
+            normal! "qp
+        elseif s:currchar != " "                        " If middle of line
+            normal! "qP
+        else
+            if s:prevchar == " "                        " If punctuation
+                normal! "qP
+            else                                        " If beginning of line
+                normal! "qP
+            endif
         endif
     endif
 endfunction
 
-function! muse#SyllableCount()
+" Echoes the number of syllables in the line
+function! muse#SyllableCount() abort
     echo 'Counting syllables...'
     normal "syy
     let s:current_line = getreg("s")
-    let s:syllable_count = system("python3 $VIMDOTDIR/plugged/muse/lib/nsyl/nsyl.py \"" . s:current_line . "\"")
+    let s:syllable_count = system("python3 \"" . s:path . "\"/..lib/datamuse_interface.py\" \"" . s:current_line . "\"")
     echo 'Syllables: ' . s:syllable_count
 endfunction
 
 " Commands
 command! -buffer MuseInstall    call muse#Install()
-command! -buffer MuseML         call muse#DatamuseWordBot("ml")
-command! -buffer MuseSL         call muse#DatamuseWordBot("sl")
-command! -buffer MuseSP         call muse#DatamuseWordBot("sp")
-command! -buffer MuseRelJJA     call muse#DatamuseWordBot("rel_jja")
-command! -buffer MuseRelJJB     call muse#DatamuseWordBot("rel_jjb")
-command! -buffer MuseRelSYN     call muse#DatamuseWordBot("rel_syn")
-command! -buffer MuseRelTRG     call muse#DatamuseWordBot("rel_trg")
-command! -buffer MuseRelANT     call muse#DatamuseWordBot("rel_ant")
-command! -buffer MuseRelSPC     call muse#DatamuseWordBot("rel_spc")
-command! -buffer MuseRelGEN     call muse#DatamuseWordBot("rel_gen")
-command! -buffer MuseRelCOM     call muse#DatamuseWordBot("rel_com")
-command! -buffer MuseRelPAR     call muse#DatamuseWordBot("rel_par")
-command! -buffer MuseRelBGA     call muse#DatamuseWordBot("rel_bga")
-command! -buffer MuseRelBGB     call muse#DatamuseWordBot("rel_bgb")
-command! -buffer MuseRelRHY     call muse#RhymeBot("rel_rhy")
-command! -buffer MuseRelNRHY    call muse#RhymeBot("rel_nry")
-command! -buffer MuseRelHOM     call muse#DatamuseWordBot("rel_hom")
-command! -buffer MuseRelCNS     call muse#DatamuseWordBot("rel_cns")
+command! -buffer MuseML         call muse#DatamuseInterface("ml","user")
+command! -buffer MuseSL         call muse#DatamuseInterface("sl","user")
+command! -buffer MuseSP         call muse#DatamuseInterface("sp","user")
+command! -buffer MuseRelJJA     call muse#DatamuseInterface("rel_jja","user")
+command! -buffer MuseRelJJB     call muse#DatamuseInterface("rel_jjb","user")
+command! -buffer MuseRelSYN     call muse#DatamuseInterface("rel_syn","user")
+command! -buffer MuseRelTRG     call muse#DatamuseInterface("rel_trg","user")
+command! -buffer MuseRelANT     call muse#DatamuseInterface("rel_ant","user")
+command! -buffer MuseRelSPC     call muse#DatamuseInterface("rel_spc","user")
+command! -buffer MuseRelGEN     call muse#DatamuseInterface("rel_gen","user")
+command! -buffer MuseRelCOM     call muse#DatamuseInterface("rel_com","user")
+command! -buffer MuseRelPAR     call muse#DatamuseInterface("rel_par","user")
+command! -buffer MuseRelBGA     call muse#DatamuseInterface("rel_bga","user")
+command! -buffer MuseRelBGB     call muse#DatamuseInterface("rel_bgb","user")
+command! -buffer MuseRelRHY     call muse#RhymeBot("rel_rhy","user")
+command! -buffer MuseRelNRHY    call muse#RhymeBot("rel_nry","user")
+command! -buffer MuseRelHOM     call muse#DatamuseInterface("rel_hom","user")
+command! -buffer MuseRelCNS     call muse#DatamuseInterface("rel_cns","user")
 command! -buffer MuseNSYL       call muse#SyllableCount()
 
 " Define mappings
-nnoremap <buffer> <unique> <Plug>(muse_ml)      :call muse#DatamuseWordBot("ml")<CR>
-nnoremap <buffer> <unique> <Plug>(muse_sl)      :call muse#DatamuseWordBot("sl")<CR>
-nnoremap <buffer> <unique> <Plug>(muse_sp)      :call muse#DatamuseWordBot("sp")<CR>
-nnoremap <buffer> <unique> <Plug>(muse_rel_jja) :call muse#DatamuseWordBot("rel_jja")<CR>
-nnoremap <buffer> <unique> <Plug>(muse_rel_jjb) :call muse#DatamuseWordBot("rel_jjb")<CR>
-nnoremap <buffer> <unique> <Plug>(muse_rel_syn) :call muse#DatamuseWordBot("rel_syn")<CR>
-nnoremap <buffer> <unique> <Plug>(muse_rel_trg) :call muse#DatamuseWordBot("rel_trg")<CR>
-nnoremap <buffer> <unique> <Plug>(muse_rel_ant) :call muse#DatamuseWordBot("rel_ant")<CR>
-nnoremap <buffer> <unique> <Plug>(muse_rel_spc) :call muse#DatamuseWordBot("rel_spc")<CR>
-nnoremap <buffer> <unique> <Plug>(muse_rel_gen) :call muse#DatamuseWordBot("rel_gen")<CR>
-nnoremap <buffer> <unique> <Plug>(muse_rel_com) :call muse#DatamuseWordBot("rel_com")<CR>
-nnoremap <buffer> <unique> <Plug>(muse_rel_par) :call muse#DatamuseWordBot("rel_par")<CR>
-nnoremap <buffer> <unique> <Plug>(muse_rel_bga) :call muse#DatamuseWordBot("rel_bga")<CR>
-nnoremap <buffer> <unique> <Plug>(muse_rel_bgb) :call muse#DatamuseWordBot("rel_bgb")<CR>
-nnoremap <buffer> <unique> <Plug>(muse_rel_rhy) :call muse#RhymeBot("rel_rhy")<CR>
-nnoremap <buffer> <unique> <Plug>(muse_rel_nry) :call muse#RhymeBot("rel_nry")<CR>
-nnoremap <buffer> <unique> <Plug>(muse_rel_hom) :call muse#DatamuseWordBot("rel_hom")<CR>
-nnoremap <buffer> <unique> <Plug>(muse_rel_cns) :call muse#DatamuseWordBot("rel_cns")<CR>
+nnoremap <buffer> <unique> <Plug>(muse_ml)      :call muse#DatamuseInterface("ml","user")<CR>
+nnoremap <buffer> <unique> <Plug>(muse_sl)      :call muse#DatamuseInterface("sl","user")<CR>
+nnoremap <buffer> <unique> <Plug>(muse_sp)      :call muse#DatamuseInterface("sp","user")<CR>
+nnoremap <buffer> <unique> <Plug>(muse_rel_jja) :call muse#DatamuseInterface("rel_jja","user")<CR>
+nnoremap <buffer> <unique> <Plug>(muse_rel_jjb) :call muse#DatamuseInterface("rel_jjb","user")<CR>
+nnoremap <buffer> <unique> <Plug>(muse_rel_syn) :call muse#DatamuseInterface("rel_syn","user")<CR>
+nnoremap <buffer> <unique> <Plug>(muse_rel_trg) :call muse#DatamuseInterface("rel_trg","user")<CR>
+nnoremap <buffer> <unique> <Plug>(muse_rel_ant) :call muse#DatamuseInterface("rel_ant","user")<CR>
+nnoremap <buffer> <unique> <Plug>(muse_rel_spc) :call muse#DatamuseInterface("rel_spc","user")<CR>
+nnoremap <buffer> <unique> <Plug>(muse_rel_gen) :call muse#DatamuseInterface("rel_gen","user")<CR>
+nnoremap <buffer> <unique> <Plug>(muse_rel_com) :call muse#DatamuseInterface("rel_com","user")<CR>
+nnoremap <buffer> <unique> <Plug>(muse_rel_par) :call muse#DatamuseInterface("rel_par","user")<CR>
+nnoremap <buffer> <unique> <Plug>(muse_rel_bga) :call muse#DatamuseInterface("rel_bga","user")<CR>
+nnoremap <buffer> <unique> <Plug>(muse_rel_bgb) :call muse#DatamuseInterface("rel_bgb","user")<CR>
+nnoremap <buffer> <unique> <Plug>(muse_rel_rhy) :call muse#RhymeBot("rel_rhy","user")<CR>
+nnoremap <buffer> <unique> <Plug>(muse_rel_nry) :call muse#RhymeBot("rel_nry","user")<CR>
+nnoremap <buffer> <unique> <Plug>(muse_rel_hom) :call muse#DatamuseInterface("rel_hom","user")<CR>
+nnoremap <buffer> <unique> <Plug>(muse_rel_cns) :call muse#DatamuseInterface("rel_cns","user")<CR>
 nnoremap <buffer> <unique> <Plug>(muse_nsyl)    :call muse#SyllableCount()<CR>
 
 " Initialize default mappings
