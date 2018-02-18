@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/gmarmstrong/vim-muse.svg?branch=master)](https://travis-ci.org/gmarmstrong/vim-muse)
+
 # `muse`
 
 `muse` is Vim plugin for writing poetry and prose. It was originally written
