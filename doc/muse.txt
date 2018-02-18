@@ -154,7 +154,7 @@ Commands                                             *muse-commands*
                 line.
 
 ====================================================================
-Default mappings                                     *muse-mappings*
+Mappings                                             *muse-mappings*
 
 `<C-x><C-o>` will open the `omnifunc` completion menu.
 
