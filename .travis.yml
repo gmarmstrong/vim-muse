@@ -24,3 +24,9 @@ script: |
     filetype plugin indent on
     syntax enable
     VIMRC) -c 'Vader! test/*.vader' > /dev/null
+
+notifications:
+    email:
+        on_success: never # default: change
+        on_failure: always # default: always
+    branch: master
