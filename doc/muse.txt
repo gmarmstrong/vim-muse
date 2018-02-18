@@ -191,4 +191,4 @@ Credits                                             *muse-credits*
 with help from Steven Tammen and Matthew Jones. Margaret Sy wrote
 the Datamuse API Python wrapper, `python-datamuse`.
 
-vim:filetype=help:textwidth=68:tabstop=4:norightleft:
+vim:filetype=help:textwidth=68:tabstop=4:norightleft:nospell
