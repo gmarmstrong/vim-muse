@@ -6,6 +6,11 @@ function! muse#Install()
     execute "!" . s:path . "/../setup.sh"
 endfunction
 
+" Installs nltk and cmudict if not already installed
+function! muse#Update()
+    execute "!" . s:path . "/../update.sh"
+endfunction
+
 " Returns the visual selection
 function! muse#GetSelectedText()
     try
@@ -224,6 +229,7 @@ endfunction
 
 " Commands
 command! -buffer MuseInstall    call muse#Install()
+command! -buffer MuseUpdate     call muse#Update()
 command! -buffer MuseML         call muse#DatamuseInterface("ml","user")
 command! -buffer MuseSL         call muse#DatamuseInterface("sl","user")
 command! -buffer MuseSP         call muse#DatamuseInterface("sp","user")
