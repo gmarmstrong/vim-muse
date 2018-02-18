@@ -1,12 +1,12 @@
 [![Build Status](https://travis-ci.org/gmarmstrong/vim-muse.svg?branch=master)](https://travis-ci.org/gmarmstrong/vim-muse)
 
-# `muse`
+# muse
 
 `muse` is Vim plugin for writing poetry and prose. It was originally written
-(named `rhymer`) as a rhyming assistant and syllable counter for the
+(and named `rhymer`) as a rhyming assistant and syllable counter for the
 [UGAHacks](http://ugahacks.com/) 2018 hackathon.
 
-You can the find documentation in `doc/muse.txt`, or by entering `:help muse`
+You can find the documentation in `doc/muse.txt`, or by entering `:help muse`
 after installing.
 
 ## Example
