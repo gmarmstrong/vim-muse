@@ -6,11 +6,11 @@ Given (Humpty Dumpty):
 
 Execute (Means like):
   3
-  call muse#DatamuseInterface("rel_syn",1)
+  call muse#DatamusePop("rel_syn",1)
   normal! w
-  call muse#DatamuseInterface("ml",3)
+  call muse#DatamusePop("ml",3)
   normal! $
-  call muse#DatamuseInterface("ml",0)
+  call muse#DatamusePop("ml",0)
 
 Expect (Humpty Dumpty modified):
   Humpty Dumpty sat on a wall,
