@@ -147,13 +147,20 @@ function! muse#DatamuseInterface(query, choice)
     call muse#ReplaceCurrentText(s:newword)
 endfunction
 
+function! muse#DatamusePrevWord(query)
+    let s:baseword = muse#GetPrevWord()
+    let s:datamuse_interface_path = "\"" . s:path . "/../lib/datamuse_interface.py\""
+    let s:newwords = split(system("python3 " . s:datamuse_interface_path . " " . a:query . " \"" . s:baseword . "\""))
+    return s:newwords
+endfunction
+
 " Datamuse Omnifunc completion
 " FIXME DatamuseWordGetter no longer exists
-function! muse#DatamuseWordCompletion(findstart, base)
+function! muse#DatamuseWordFollow(findstart, base)
     if a:findstart == 1
         return col('.')-strlen(expand('<cword>'))
     elseif a:findstart == 0
-        return muse#DatamuseWordGetter("rel_bga")
+        return muse#DatamusePrevWord("rel_bga")
     endif
 endfunction
 
@@ -293,4 +300,4 @@ nmap <Leader>cns   <Plug>(muse_rel_cns)
 nmap <Leader>nsyl  <Plug>(muse_nsyl)
 
 " Enable  auto-completion
-setlocal omnifunc=muse#DatamuseWordCompletion
+setlocal omnifunc=muse#DatamuseWordFollow
