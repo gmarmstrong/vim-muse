@@ -134,23 +134,37 @@ function! muse#PopText()
     endif
 endfunction
 
+" Interacts with datamuse_interface.py
+" param query:      Datamuse API function
+" param basetext:   Text on which to operate
+function! muse#Datamuse(query, basetext)
+    let s:datamuse_interface = "python3 \"" . s:path . "/../lib/datamuse_interface.py\""
+    return split(system(s:datamuse_interface . " " . a:query . " \"" . s:baseword . "\""))
+endfunction
+
 " Replaces current text with new word
-function! muse#DatamuseInterface(query, choice)
+" param query:      Datamuse API function
+" param choice:     'user' or an integer
+function! muse#DatamusePop(query, choice)
     let s:baseword = muse#PopText()
-    let s:datamuse_interface_path = "\"" . s:path . "/../lib/datamuse_interface.py\""
-    let s:newwords = split(system("python3 " . s:datamuse_interface_path . " " . a:query . " \"" . s:baseword . "\""))
-    if expand(a:choice) == "user"
+    let s:newwords = muse#Datamuse(a:query, s:baseword)
+    if len(s:newwords) == 0                         " If no Datamuse results
+        echo "No results."
+        return
+    elseif a:choice == "user"                       " If choice is 'user'
         let s:newword = muse#ListWords(s:newwords)
-    else
+    elseif type(a:choice) == type(0)                " If choice is number
         let s:newword = s:newwords[a:choice]
+    else
+        echo "ERROR: Invalid choice"
+        return
     endif
     call muse#ReplaceCurrentText(s:newword)
 endfunction
 
 function! muse#DatamusePrevWord(query)
     let s:baseword = muse#GetPrevWord()
-    let s:datamuse_interface_path = "\"" . s:path . "/../lib/datamuse_interface.py\""
-    let s:newwords = split(system("python3 " . s:datamuse_interface_path . " " . a:query . " \"" . s:baseword . "\""))
+    let s:newwords = muse#Datamuse(a:query, s:baseword)
     return s:newwords
 endfunction
 
@@ -164,6 +178,7 @@ function! muse#DatamuseWordFollow(findstart, base)
 endfunction
 
 " Rhymes with the last word of the previous line
+" FIXME
 function! muse#RhymeBot(query)
     " Get rhymes for the previous text
     let s:rhyming_word = muse#GetPrevText()
@@ -236,45 +251,45 @@ endfunction
 " Commands
 command! -buffer MuseInstall    call muse#Install()
 command! -buffer MuseUpdate     call muse#Update()
-command! -buffer MuseML         call muse#DatamuseInterface("ml","user")
-command! -buffer MuseSL         call muse#DatamuseInterface("sl","user")
-command! -buffer MuseSP         call muse#DatamuseInterface("sp","user")
-command! -buffer MuseRelJJA     call muse#DatamuseInterface("rel_jja","user")
-command! -buffer MuseRelJJB     call muse#DatamuseInterface("rel_jjb","user")
-command! -buffer MuseRelSYN     call muse#DatamuseInterface("rel_syn","user")
-command! -buffer MuseRelTRG     call muse#DatamuseInterface("rel_trg","user")
-command! -buffer MuseRelANT     call muse#DatamuseInterface("rel_ant","user")
-command! -buffer MuseRelSPC     call muse#DatamuseInterface("rel_spc","user")
-command! -buffer MuseRelGEN     call muse#DatamuseInterface("rel_gen","user")
-command! -buffer MuseRelCOM     call muse#DatamuseInterface("rel_com","user")
-command! -buffer MuseRelPAR     call muse#DatamuseInterface("rel_par","user")
-command! -buffer MuseRelBGA     call muse#DatamuseInterface("rel_bga","user")
-command! -buffer MuseRelBGB     call muse#DatamuseInterface("rel_bgb","user")
+command! -buffer MuseML         call muse#DatamusePop("ml","user")
+command! -buffer MuseSL         call muse#DatamusePop("sl","user")
+command! -buffer MuseSP         call muse#DatamusePop("sp","user")
+command! -buffer MuseRelJJA     call muse#DatamusePop("rel_jja","user")
+command! -buffer MuseRelJJB     call muse#DatamusePop("rel_jjb","user")
+command! -buffer MuseRelSYN     call muse#DatamusePop("rel_syn","user")
+command! -buffer MuseRelTRG     call muse#DatamusePop("rel_trg","user")
+command! -buffer MuseRelANT     call muse#DatamusePop("rel_ant","user")
+command! -buffer MuseRelSPC     call muse#DatamusePop("rel_spc","user")
+command! -buffer MuseRelGEN     call muse#DatamusePop("rel_gen","user")
+command! -buffer MuseRelCOM     call muse#DatamusePop("rel_com","user")
+command! -buffer MuseRelPAR     call muse#DatamusePop("rel_par","user")
+command! -buffer MuseRelBGA     call muse#DatamusePop("rel_bga","user")
+command! -buffer MuseRelBGB     call muse#DatamusePop("rel_bgb","user")
 command! -buffer MuseRelRHY     call muse#RhymeBot("rel_rhy","user")
 command! -buffer MuseRelNRHY    call muse#RhymeBot("rel_nry","user")
-command! -buffer MuseRelHOM     call muse#DatamuseInterface("rel_hom","user")
-command! -buffer MuseRelCNS     call muse#DatamuseInterface("rel_cns","user")
+command! -buffer MuseRelHOM     call muse#DatamusePop("rel_hom","user")
+command! -buffer MuseRelCNS     call muse#DatamusePop("rel_cns","user")
 command! -buffer MuseNSYL       call muse#SyllableCount()
 
 " Define mappings
-nnoremap <buffer> <unique> <Plug>(muse_ml)      :call muse#DatamuseInterface("ml","user")<CR>
-nnoremap <buffer> <unique> <Plug>(muse_sl)      :call muse#DatamuseInterface("sl","user")<CR>
-nnoremap <buffer> <unique> <Plug>(muse_sp)      :call muse#DatamuseInterface("sp","user")<CR>
-nnoremap <buffer> <unique> <Plug>(muse_rel_jja) :call muse#DatamuseInterface("rel_jja","user")<CR>
-nnoremap <buffer> <unique> <Plug>(muse_rel_jjb) :call muse#DatamuseInterface("rel_jjb","user")<CR>
-nnoremap <buffer> <unique> <Plug>(muse_rel_syn) :call muse#DatamuseInterface("rel_syn","user")<CR>
-nnoremap <buffer> <unique> <Plug>(muse_rel_trg) :call muse#DatamuseInterface("rel_trg","user")<CR>
-nnoremap <buffer> <unique> <Plug>(muse_rel_ant) :call muse#DatamuseInterface("rel_ant","user")<CR>
-nnoremap <buffer> <unique> <Plug>(muse_rel_spc) :call muse#DatamuseInterface("rel_spc","user")<CR>
-nnoremap <buffer> <unique> <Plug>(muse_rel_gen) :call muse#DatamuseInterface("rel_gen","user")<CR>
-nnoremap <buffer> <unique> <Plug>(muse_rel_com) :call muse#DatamuseInterface("rel_com","user")<CR>
-nnoremap <buffer> <unique> <Plug>(muse_rel_par) :call muse#DatamuseInterface("rel_par","user")<CR>
-nnoremap <buffer> <unique> <Plug>(muse_rel_bga) :call muse#DatamuseInterface("rel_bga","user")<CR>
-nnoremap <buffer> <unique> <Plug>(muse_rel_bgb) :call muse#DatamuseInterface("rel_bgb","user")<CR>
+nnoremap <buffer> <unique> <Plug>(muse_ml)      :call muse#DatamusePop("ml","user")<CR>
+nnoremap <buffer> <unique> <Plug>(muse_sl)      :call muse#DatamusePop("sl","user")<CR>
+nnoremap <buffer> <unique> <Plug>(muse_sp)      :call muse#DatamusePop("sp","user")<CR>
+nnoremap <buffer> <unique> <Plug>(muse_rel_jja) :call muse#DatamusePop("rel_jja","user")<CR>
+nnoremap <buffer> <unique> <Plug>(muse_rel_jjb) :call muse#DatamusePop("rel_jjb","user")<CR>
+nnoremap <buffer> <unique> <Plug>(muse_rel_syn) :call muse#DatamusePop("rel_syn","user")<CR>
+nnoremap <buffer> <unique> <Plug>(muse_rel_trg) :call muse#DatamusePop("rel_trg","user")<CR>
+nnoremap <buffer> <unique> <Plug>(muse_rel_ant) :call muse#DatamusePop("rel_ant","user")<CR>
+nnoremap <buffer> <unique> <Plug>(muse_rel_spc) :call muse#DatamusePop("rel_spc","user")<CR>
+nnoremap <buffer> <unique> <Plug>(muse_rel_gen) :call muse#DatamusePop("rel_gen","user")<CR>
+nnoremap <buffer> <unique> <Plug>(muse_rel_com) :call muse#DatamusePop("rel_com","user")<CR>
+nnoremap <buffer> <unique> <Plug>(muse_rel_par) :call muse#DatamusePop("rel_par","user")<CR>
+nnoremap <buffer> <unique> <Plug>(muse_rel_bga) :call muse#DatamusePop("rel_bga","user")<CR>
+nnoremap <buffer> <unique> <Plug>(muse_rel_bgb) :call muse#DatamusePop("rel_bgb","user")<CR>
 nnoremap <buffer> <unique> <Plug>(muse_rel_rhy) :call muse#RhymeBot("rel_rhy","user")<CR>
 nnoremap <buffer> <unique> <Plug>(muse_rel_nry) :call muse#RhymeBot("rel_nry","user")<CR>
-nnoremap <buffer> <unique> <Plug>(muse_rel_hom) :call muse#DatamuseInterface("rel_hom","user")<CR>
-nnoremap <buffer> <unique> <Plug>(muse_rel_cns) :call muse#DatamuseInterface("rel_cns","user")<CR>
+nnoremap <buffer> <unique> <Plug>(muse_rel_hom) :call muse#DatamusePop("rel_hom","user")<CR>
+nnoremap <buffer> <unique> <Plug>(muse_rel_cns) :call muse#DatamusePop("rel_cns","user")<CR>
 nnoremap <buffer> <unique> <Plug>(muse_nsyl)    :call muse#SyllableCount()<CR>
 
 " Initialize default mappings
@@ -298,5 +313,5 @@ nmap <Leader>hom   <Plug>(muse_rel_hom)
 nmap <Leader>cns   <Plug>(muse_rel_cns)
 nmap <Leader>nsyl  <Plug>(muse_nsyl)
 
-" Enable  auto-completion
+" Word suggestions
 setlocal omnifunc=muse#DatamuseWordFollow
