@@ -151,7 +151,7 @@ function! muse#DatamusePop(query, choice)
     if len(s:newwords) == 0                         " If no Datamuse results
         echo "No results."
         return
-    elseif a:choice == "user"                       " If choice is 'user'
+    elseif expand(a:choice) == "user"                       " If choice is 'user'
         let s:newword = muse#ListWords(s:newwords)
     elseif type(a:choice) == type(0)                " If choice is number
         let s:newword = s:newwords[a:choice]
