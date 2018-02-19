@@ -4,7 +4,9 @@ Given (Humpty Dumpty):
   All the king's horses and all the king's men
   Couldn't put Humpty together again.
 
-Execute (Means like):
+Execute (DatamusePop tests):
+  normal! 3w
+  call muse#DatamusePop("rel_ant",0)
   3
   call muse#DatamusePop("rel_syn",1)
   normal! w
@@ -13,7 +15,7 @@ Execute (Means like):
   call muse#DatamusePop("ml",0)
 
 Expect (Humpty Dumpty modified):
-  Humpty Dumpty sat on a wall,
+  Humpty Dumpty sat off a wall,
   Humpty Dumpty had a great fall.
   whole red king's horses and all the king's manpower
   Couldn't put Humpty together again.
