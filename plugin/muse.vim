@@ -155,7 +155,6 @@ function! muse#DatamusePrevWord(query)
 endfunction
 
 " Datamuse Omnifunc completion
-" FIXME DatamuseWordGetter no longer exists
 function! muse#DatamuseWordFollow(findstart, base)
     if a:findstart == 1
         return col('.')-strlen(expand('<cword>'))
