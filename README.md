@@ -21,5 +21,5 @@ with `:help muse`.
 
 ## Updating
 
-Use `:PlugUpdate vim-muse` to update to the latest release of `muse`, and use
-`:MuseUpdate` to update its dependencies.
+Use `:PlugUpdate vim-muse` to get the latest release, and use `:MuseUpdate` to
+update its dependencies.
