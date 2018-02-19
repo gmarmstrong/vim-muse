@@ -43,13 +43,19 @@ endfunction
 " param basetext:   Text on which to operate
 function! muse#Datamuse(query, basetext)
     let s:datamuse_interface = "python3 \"" . s:path . "/../lib/datamuse_interface.py\""
-    return split(system(s:datamuse_interface . " " . a:query . " \"" . s:baseword . "\""))
+    return split(system(s:datamuse_interface . " " . a:query . " \"" . s:basetext . "\""))
 endfunction
 
 " Replaces current text with new word
 " param query:      Datamuse API function
 " param choice:     'user' or an integer
 function! muse#DatamusePop(query, choice)
+    if mode() == 'v' || mode() == 'V' || mode() == 'CTRL-V'
+        normal! "qy
+        s:baseword = getreg("q")
+    else
+        s:baseword = expand("<cword>")
+    endif
     let s:newwords = muse#Datamuse(a:query, s:baseword)
     if len(s:newwords) == 0                         " If no Datamuse results
         echo "No results."
