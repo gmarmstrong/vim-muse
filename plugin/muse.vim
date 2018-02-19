@@ -38,102 +38,6 @@ function! muse#GetPrevWord()
     return s:selectedtext
 endfunction
 
-" Removes and returns current text
-function! muse#PopText()
-    " Switch on mode
-    if mode() == 'n'                  " Normal
-        let s:tmpword = expand("<cword>")
-        normal! diw
-        return s:tmpword
-    elseif mode() == 'no'             " Operator-pending
-        let s:tmpword = expand("<cword>")
-        normal! diw
-        return s:tmpword
-    elseif mode() == 'v'              " Visual by character
-        let s:tmpword = muse#GetSelectedText()
-        normal! d
-        return s:tmpword
-    elseif mode() == 'V'              " Visual by line
-        let s:tmpword = muse#GetSelectedText()
-        normal! d
-        return s:tmpword
-    elseif mode() == 'CTRL-V'         " Visual blockwise
-        let s:tmpword = muse#GetSelectedText()
-        normal! d
-        return s:tmpword
-    elseif mode() == 's'              " Select by character
-        let s:tmpword = muse#GetSelectedText()
-        normal! d
-        return s:tmpword
-    elseif mode() == 'S'              " Select by line
-        let s:tmpword = muse#GetSelectedText()
-        normal! d
-        return s:tmpword
-    elseif mode() == 'CTRL-S'         " Select blockwise
-        let s:tmpword = muse#GetSelectedText()
-        normal! d
-        return s:tmpword
-    elseif mode() == 'i'              " Insert
-        let s:tmpword = expand("<cword>")
-        normal! diw
-        return s:tmpword
-    elseif mode() == 'ic'             " Insert completion (|compl-generic|)
-        let s:tmpword = expand("<cword>")
-        normal! diw
-        return s:tmpword
-    elseif mode() == 'ix'             " Insert completion (|i_CTRL-X|)
-        let s:tmpword = expand("<cword>")
-        normal! diw
-        return s:tmpword
-    elseif mode() == 'R'              " Replace (|R|)
-        let s:tmpword = expand("<cword>")
-        normal! diw
-        return s:tmpword
-    elseif mode() == 'Rc'             " Replace completion (|compl-generic|)
-        let s:tmpword = expand("<cword>")
-        normal! diw
-        return s:tmpword
-    elseif mode() == 'Rx'             " Replace completion (|i_CTRL-X|)
-        let s:tmpword = expand("<cword>")
-        normal! diw
-        return s:tmpword
-    elseif mode() == 'c'              " Command-line editing
-        let s:tmpword = expand("<cword>")
-        normal! diw
-        return s:tmpword
-    elseif mode() == 'cv'             " Vim Ex mode (gQ)
-        let s:tmpword = expand("<cword>")
-        normal! diw
-        return s:tmpword
-    elseif mode() == 'ce'             " Normal Ex mode (Q)
-        let s:tmpword = expand("<cword>")
-        normal! diw
-        return s:tmpword
-    elseif mode() == 'r'              " Hit-enter prompt
-        let s:tmpword = expand("<cword>")
-        normal! diw
-        return s:tmpword
-    elseif mode() == 'rm'             " The -- more -- prompt
-        let s:tmpword = expand("<cword>")
-        normal! diw
-        return s:tmpword
-    elseif mode() == 'r?'             " A |:confirm| query of some sort
-        let s:tmpword = expand("<cword>")
-        normal! diw
-        return s:tmpword
-    elseif mode() == '!'              " Shell or external command is executing
-        let s:tmpword = expand("<cword>")
-        normal! diw
-        return s:tmpword
-    elseif mode() == 't'              " Terminal mode: keys go to the job
-        let s:tmpword = expand("<cword>")
-        normal! diw
-        return s:tmpword
-    else
-        echo "You are in a strange place..."
-    endif
-endfunction
-
 " Interacts with datamuse_interface.py
 " param query:      Datamuse API function
 " param basetext:   Text on which to operate
@@ -146,7 +50,6 @@ endfunction
 " param query:      Datamuse API function
 " param choice:     'user' or an integer
 function! muse#DatamusePop(query, choice)
-    let s:baseword = muse#PopText()
     let s:newwords = muse#Datamuse(a:query, s:baseword)
     if len(s:newwords) == 0                         " If no Datamuse results
         echo "No results."
@@ -159,7 +62,6 @@ function! muse#DatamusePop(query, choice)
         echo "ERROR: Invalid choice"
         return
     endif
-    " FIXME Can't really replace after pop
     call muse#ReplaceCurrentText(s:newword)
 endfunction
 
@@ -215,32 +117,13 @@ function! muse#ListWords(newwords)
     return a:newwords[nr2char(getchar())]
 endfunction
 
-" Replace current word with new word
+" Replace current word with new word,
 function! muse#ReplaceCurrentText(newword)
+    let @q = s:newword
     if mode() == 'v' || mode() == 'V' || mode() == 'CTRL-V'
-        " FIXME Off-by-one whitespace at end of line
-        normal! d
-        let @q = s:newword
-        normal! "qP
+        normal! "qp
     else
-        let @q = a:newword
-        let s:prevchar = getline('.')[col('.')-1]
-        let s:currchar = getline('.')[col('.')]
-        if col('.')+1 == col('$') && col('.')+1 != 1    " If end of line
-            if s:prevchar == " "                        " If end of line and punctuation
-                normal! "qP
-            else                                        " If end of line and not punctuation
-                normal! "qp
-            endif
-        elseif s:currchar != " "                        " If middle of line
-            normal! "qP
-        else
-            if s:prevchar == " "                        " If punctuation
-                normal! "qP
-            else                                        " If beginning of line
-                normal! "qP
-            endif
-        endif
+        normal! viw"qp
     endif
 endfunction
 
