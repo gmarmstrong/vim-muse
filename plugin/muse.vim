@@ -151,7 +151,7 @@ function! muse#DatamusePop(query, choice)
     if len(s:newwords) == 0                         " If no Datamuse results
         echo "No results."
         return
-    elseif expand(a:choice) == "user"                       " If choice is 'user'
+    elseif expand(a:choice) == "user"               " If choice is 'user'
         let s:newword = muse#ListWords(s:newwords)
     elseif type(a:choice) == type(0)                " If choice is number
         let s:newword = s:newwords[a:choice]
@@ -159,6 +159,7 @@ function! muse#DatamusePop(query, choice)
         echo "ERROR: Invalid choice"
         return
     endif
+    " FIXME Can't really replace after pop
     call muse#ReplaceCurrentText(s:newword)
 endfunction
 
@@ -184,7 +185,7 @@ function! muse#RhymeBot(query)
     let s:rhyming_word = muse#GetPrevText()
 
     " Get new words
-    let s:rhymes = split(system("python3 " . s:path . "/../lib/datamuse_interface.py " . a:query ." " . s:rhyming_word))
+    let s:rhymes = split(system("python3 " . s:path . "/../lib/datamuse_interface.py " . a:query . " " . s:rhyming_word))
 
     " Print list of rhymes
     echo 'Rhymes with ' . s:rhyming_word . ':'
