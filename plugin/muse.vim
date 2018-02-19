@@ -227,7 +227,11 @@ function! muse#ReplaceCurrentText(newword)
         let s:prevchar = getline('.')[col('.')-1]
         let s:currchar = getline('.')[col('.')]
         if col('.')+1 == col('$') && col('.')+1 != 1    " If end of line
-            normal! "qp
+            if s:prevchar == " "                        " If end of line and punctuation
+                normal! "qP
+            else                                        " If end of line and not punctuation
+                normal! "qp
+            endif
         elseif s:currchar != " "                        " If middle of line
             normal! "qP
         else
