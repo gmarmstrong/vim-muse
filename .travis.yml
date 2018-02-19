@@ -27,6 +27,6 @@ script: |
 
 notifications:
     email:
-        on_success: never # default: change
-        on_failure: always # default: always
-    branch: master
+        branch: master
+            on_success: never # default: change
+            on_failure: always # default: always
