@@ -10,7 +10,7 @@ addons:
             - "python3-pip"
 
 before_install:
-    - "./setup.sh"
+    - "./scripts/setup.sh"
 
 before_script: |
     git clone https://github.com/junegunn/vader.vim.git
