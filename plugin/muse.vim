@@ -43,7 +43,7 @@ endfunction
 " param basetext:   Text on which to operate
 function! muse#Datamuse(query, basetext)
     let s:datamuse_interface = "python3 \"" . s:path . "/../lib/datamuse_interface.py\""
-    return split(system(s:datamuse_interface . " " . a:query . " \"" . s:basetext . "\""))
+    return split(system(s:datamuse_interface . " " . a:query . " \"" . a:basetext . "\""))
 endfunction
 
 " Replaces current text with new word
