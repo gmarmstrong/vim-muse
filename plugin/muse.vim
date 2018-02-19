@@ -52,9 +52,9 @@ endfunction
 function! muse#DatamusePop(query, choice)
     if mode() == 'v' || mode() == 'V' || mode() == 'CTRL-V'
         normal! "qy
-        s:baseword = getreg("q")
+        let s:baseword = getreg("q")
     else
-        s:baseword = expand("<cword>")
+        let s:baseword = expand("<cword>")
     endif
     let s:newwords = muse#Datamuse(a:query, s:baseword)
     if len(s:newwords) == 0                         " If no Datamuse results
