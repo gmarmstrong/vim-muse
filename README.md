@@ -7,8 +7,6 @@ AABB rhyme suggestions, synonym replacement, and syllable counting. It was
 originally written under the name `rhymer` as a rhyming assistant and syllable
 counter for the UGAHacks 2018 hackathon.
 
-![Demo recording](https://im2.ezgif.com/tmp/ezgif-2-ebbca0a22e.gif)
-
 Usage instructions are included in the `doc/` directory, and are also available
 with `:help muse`.
 
