@@ -128,15 +128,16 @@ Commands                                             *muse-commands*
 
                                     *MuseRelRHY*
                                     *<plug>(muse_rel_rhy)*
-`:MuseRelRHY`   Offers a list of perfect rhymes of the last word
-                of the previous line. The user's selection is pasted
-                beside the cursor.
+
+`:MuseRelRHY`   CURRENTLY DISABLED. Offers a list of perfect rhymes
+                of the last word of the previous line. The user's
+                selection is pasted beside the cursor.
 
                                     *MuseRelNRY*
                                     *<plug>(muse_rel_nry)*
-`:MuseRelNRY`   Offers a list of near rhymes of the last word of
-                the previous line. The user's selection is pasted
-                beside the cursor.
+`:MuseRelNRY`   CURRENTLY DISABLED. Offers a list of near rhymes of
+                the last word of the previous line. The user's
+                selection is pasted beside the cursor.
 
                                     *MuseRelHOM*
                                     *<plug>(muse_rel_hom)*

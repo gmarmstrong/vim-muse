@@ -86,32 +86,32 @@ function! muse#DatamuseWordFollow(findstart, base)
     endif
 endfunction
 
-" Rhymes with the last word of the previous line
-" FIXME
-function! muse#RhymeBot(query)
-    " Get rhymes for the previous text
-    let s:rhyming_word = muse#GetPrevText()
-
-    " Get new words
-    let s:rhymes = split(system("python3 " . s:path . "/../lib/datamuse_interface.py " . a:query . " " . s:rhyming_word))
-
-    " Print list of rhymes
-    echo 'Rhymes with ' . s:rhyming_word . ':'
-    let s:count = 0
-    for s:rhyme in s:rhymes
-        echom s:count . '.' s:rhyme
-        let s:count += 1
-    endfor
-
-    " Receive user input/choice
-    " See `:help complete-funcitons`
-    " See `:help complete()`
-    " See `:help getchar()`
-    let @q = s:rhymes[nr2char(getchar())]
-
-    " Insert choice
-    normal! "qp
-endfunction
+"" Rhymes with the last word of the previous line
+"" FIXME
+"function! muse#RhymeBot(query)
+"    " Get rhymes for the previous text
+"    let s:rhyming_word = muse#GetPrevText()
+"
+"    " Get new words
+"    let s:rhymes = split(system("python3 " . s:path . "/../lib/datamuse_interface.py " . a:query . " " . s:rhyming_word))
+"
+"    " Print list of rhymes
+"    echo 'Rhymes with ' . s:rhyming_word . ':'
+"    let s:count = 0
+"    for s:rhyme in s:rhymes
+"        echom s:count . '.' s:rhyme
+"        let s:count += 1
+"    endfor
+"
+"    " Receive user input/choice
+"    " See `:help complete-funcitons`
+"    " See `:help complete()`
+"    " See `:help getchar()`
+"    let @q = s:rhymes[nr2char(getchar())]
+"
+"    " Insert choice
+"    normal! "qp
+"endfunction
 
 " Print list of words and return user's choice
 function! muse#ListWords(newwords)
@@ -159,8 +159,8 @@ command! -buffer MuseRelCOM     call muse#DatamusePop("rel_com","user")
 command! -buffer MuseRelPAR     call muse#DatamusePop("rel_par","user")
 command! -buffer MuseRelBGA     call muse#DatamusePop("rel_bga","user")
 command! -buffer MuseRelBGB     call muse#DatamusePop("rel_bgb","user")
-command! -buffer MuseRelRHY     call muse#RhymeBot("rel_rhy","user")
-command! -buffer MuseRelNRHY    call muse#RhymeBot("rel_nry","user")
+" FIXME command! -buffer MuseRelRHY     call muse#RhymeBot("rel_rhy","user")
+" FIXME command! -buffer MuseRelNRHY    call muse#RhymeBot("rel_nry","user")
 command! -buffer MuseRelHOM     call muse#DatamusePop("rel_hom","user")
 command! -buffer MuseRelCNS     call muse#DatamusePop("rel_cns","user")
 command! -buffer MuseNSYL       call muse#SyllableCount()
@@ -180,8 +180,8 @@ nnoremap <buffer> <unique> <Plug>(muse_rel_com) :call muse#DatamusePop("rel_com"
 nnoremap <buffer> <unique> <Plug>(muse_rel_par) :call muse#DatamusePop("rel_par","user")<CR>
 nnoremap <buffer> <unique> <Plug>(muse_rel_bga) :call muse#DatamusePop("rel_bga","user")<CR>
 nnoremap <buffer> <unique> <Plug>(muse_rel_bgb) :call muse#DatamusePop("rel_bgb","user")<CR>
-nnoremap <buffer> <unique> <Plug>(muse_rel_rhy) :call muse#RhymeBot("rel_rhy","user")<CR>
-nnoremap <buffer> <unique> <Plug>(muse_rel_nry) :call muse#RhymeBot("rel_nry","user")<CR>
+" FIXME nnoremap <buffer> <unique> <Plug>(muse_rel_rhy) :call muse#RhymeBot("rel_rhy","user")<CR>
+" FIXME nnoremap <buffer> <unique> <Plug>(muse_rel_nry) :call muse#RhymeBot("rel_nry","user")<CR>
 nnoremap <buffer> <unique> <Plug>(muse_rel_hom) :call muse#DatamusePop("rel_hom","user")<CR>
 nnoremap <buffer> <unique> <Plug>(muse_rel_cns) :call muse#DatamusePop("rel_cns","user")<CR>
 nnoremap <buffer> <unique> <Plug>(muse_nsyl)    :call muse#SyllableCount()<CR>
@@ -201,7 +201,7 @@ nmap <Leader>com   <Plug>(muse_rel_com)
 nmap <Leader>par   <Plug>(muse_rel_par)
 nmap <Leader>bga   <Plug>(muse_rel_bga)
 nmap <Leader>bgb   <Plug>(muse_rel_bgb)
-nmap <Leader>rhy   <Plug>(muse_rel_rhy)
+" FIXME nmap <Leader>rhy   <Plug>(muse_rel_rhy)
 nmap <Leader>nry   <Plug>(muse_rel_nry)
 nmap <Leader>hom   <Plug>(muse_rel_hom)
 nmap <Leader>cns   <Plug>(muse_rel_cns)
