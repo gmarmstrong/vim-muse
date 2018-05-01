@@ -17,9 +17,13 @@ with `:help muse`.
 3. Restart Vim or enter `:source $MYVIMRC`
 4. Enter `:PlugInstall vim-muse`
 5. Restart Vim or enter `:source $MYVIMRC`
-5. Enter `:MuseInstall`
+6. Install Python 3 packages `python-datamuse` and `nltk`. Either:
+    - Enter `:MuseInstall` if using `pip3`, or...
+    - Install `python-datamuse` and `nltk` from PyPI and run
+      `nltk.download('cmudict')` in Python 3
 
 ## Updating
 
 1. Enter `:PlugUpdate vim-muse`
-2. Enter `:MuseUpdate`
+2. Enter `:MuseUpdate` if using `pip3`, or upgrade `python-datamuse` and `nltk`
+   from PyPI
