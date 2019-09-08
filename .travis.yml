@@ -9,6 +9,7 @@ addons:
             - "python3-pip"
 
 before_install:
+    - pip install --upgrade setuptools==41.2.0
     - "./scripts/setup.sh"
 
 before_script: |
