@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.org/gmarmstrong/vim-muse.svg?branch=master)](https://travis-ci.org/gmarmstrong/vim-muse)
+[![Build Status](https://api.travis-ci.com/gmarmstrong/vim-muse.svg?branch=master)](https://app.travis-ci.com/gmarmstrong/vim-muse)
 
 # muse
 
