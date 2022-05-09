@@ -8,6 +8,10 @@ counter for the UGAHacks 2018 hackathon.
 Usage instructions are included in the `doc/` directory, and are also available
 with `:help muse`.
 
+## Demo
+
+![Demo recording for UGAHacks 2018](https://i.imgur.com/5ORa10L.gif "demo recording")
+
 ## Installation with vim-plug
 
 1. Install [vim-plug](https://github.com/junegunn/vim-plug)
